@@ -11,6 +11,8 @@
 html {
   font-size: 10px;
   scroll-behavior: smooth;
+  /* Always reserve space for the scrollbar so content never shifts when scroll is locked/unlocked */
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -24,7 +26,6 @@ body {
 
 body.loaded {
   overflow-y: auto;
-  overflow-y: overlay;
 }
 
 body.nav-active {
