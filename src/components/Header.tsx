@@ -2,27 +2,29 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { IoCloseOutline } from 'react-icons/io5'
 import Btn from './Btn'
 import Separator from './Separator'
 
 const navLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'Menus', href: '#menu' },
-  { label: 'About Us', href: '#about' },
-  { label: 'Our Chefs', href: '#features' },
-  { label: 'Contact', href: '#reservation' },
+  { label: 'Home', href: '/' },
+  { label: 'Menus', href: '/#menu' },
+  { label: 'About Us', href: '/#about' },
+  { label: 'Our Chefs', href: '/#features' },
+  { label: 'Contact', href: '/contact' },
 ]
 
 export default function Header() {
-  const [active, setActive] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const [navOpen, setNavOpen] = useState(false)
+  const pathname = usePathname()
+
+  // On /contact the navbar is always white regardless of scroll
+  const isContactPage = pathname === '/contact'
 
   useEffect(() => {
-    const handleScroll = () => {
-      setActive(window.scrollY >= 50)
-    }
-
+    const handleScroll = () => setScrolled(window.scrollY >= 50)
     handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
@@ -30,25 +32,31 @@ export default function Header() {
 
   // Toggle Body Scroll lock when nav drawer is active
   useEffect(() => {
-    if (navOpen) {
-      document.body.classList.add('nav-active')
-    } else {
-      document.body.classList.remove('nav-active')
-    }
+    document.body.classList.toggle('nav-active', navOpen)
   }, [navOpen])
+
+  // ── Derived style tokens ────────────────────────────────────────────────
+  // Contact page: always white, always top-0
+  // Landing page: transparent → dark on scroll
+  const headerBg = isContactPage
+    ? 'bg-white border-b border-[hsla(0,0%,0%,0.08)] shadow-[0_2px_16px_hsla(0,0%,0%,0.06)]'
+    : scrolled
+      ? 'bg-eerie-black-4 border-b border-black-alpha-15 shadow-1'
+      : 'bg-transparent border-b border-transparent'
+
+  const headerTop = isContactPage ? 'top-0' : scrolled ? 'top-0' : 'top-0 sm:top-[40px]'
+  const headerPy  = isContactPage ? 'py-[18px]' : scrolled ? 'py-[20px]' : 'py-[40px]'
+
+  const linkColor   = isContactPage ? 'text-smoky-black-1 hover:text-gold-crayola' : 'text-white'
+  const burgerColor = isContactPage ? 'bg-smoky-black-1' : 'bg-white'
 
   return (
     <>
-      <header
-        className={`fixed left-0 w-full z-[45] transition-all duration-2 ${
-          active 
-            ? 'top-0 bg-eerie-black-4 py-[20px] border-b border-black-alpha-15 shadow-1' 
-            : 'top-0 sm:top-[40px] bg-transparent py-[40px] border-b border-transparent'
-        }`}
-      >
+      <header className={`fixed left-0 w-full z-[45] transition-all duration-2 ${headerTop} ${headerBg} ${headerPy}`}>
         <div className="max-w-[1200px] mx-auto px-[20px] flex justify-between items-center gap-[8px]">
+
           {/* Logo */}
-          <Link href="#home" className="flex-shrink-0">
+          <Link href="/" className="flex-shrink-0">
             <Image
               src="/assets/images/logo.svg"
               alt="DineEase Logo"
@@ -64,32 +72,32 @@ export default function Header() {
             <ul className="flex items-center gap-[30px]">
               {navLinks.map((link, idx) => (
                 <li key={idx}>
-                  <a
+                  <Link
                     href={link.href}
-                    className="hover-underline text-label-2 uppercase font-bold tracking-ls-1 leading-none py-[10px] block"
+                    className={`hover-underline text-label-2 uppercase font-bold tracking-ls-1 leading-none py-[10px] block transition-colors ${linkColor}`}
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
           </nav>
 
-          {/* Call-to-action button */}
-          <div className="flex items-center gap-[20px]">
-            <Btn href="#reservation" className="hidden sm:block">
+          {/* CTA + Hamburger */}
+          <div className="flex items-center gap-[8px]">
+            <Btn href="/contact" className="hidden sm:block">
               Book A Table
             </Btn>
 
-            {/* Mobile Hamburger toggle button */}
+            {/* Mobile Hamburger */}
             <button
               onClick={() => setNavOpen(true)}
               className="xl:hidden flex flex-col justify-center items-end p-[12px] pr-0 cursor-pointer"
               aria-label="Toggle menu"
             >
-              <span className="w-[30px] h-[2px] bg-white my-[4px] block origin-left animate-menu-btn" />
-              <span className="w-[30px] h-[2px] bg-white my-[4px] block origin-left animate-menu-btn [animation-delay:150ms]" />
-              <span className="w-[30px] h-[2px] bg-white my-[4px] block origin-left animate-menu-btn [animation-delay:300ms]" />
+              <span className={`w-[30px] h-[2px] my-[4px] block origin-left animate-menu-btn ${burgerColor}`} />
+              <span className={`w-[30px] h-[2px] my-[4px] block origin-left animate-menu-btn [animation-delay:150ms] ${burgerColor}`} />
+              <span className={`w-[30px] h-[2px] my-[4px] block origin-left animate-menu-btn [animation-delay:300ms] ${burgerColor}`} />
             </button>
           </div>
         </div>
@@ -111,7 +119,7 @@ export default function Header() {
         </button>
 
         {/* Logo */}
-        <Link href="#home" onClick={() => setNavOpen(false)} className="mx-auto mb-[60px] flex-shrink-0">
+        <Link href="/" onClick={() => setNavOpen(false)} className="mx-auto mb-[60px] flex-shrink-0">
           <Image
             src="/assets/images/logo.svg"
             alt="DineEase Logo"
@@ -126,7 +134,7 @@ export default function Header() {
           <ul>
             {navLinks.map((link, idx) => (
               <li key={idx} className="border-t border-white-alpha-20">
-                <a
+                <Link
                   href={link.href}
                   onClick={() => setNavOpen(false)}
                   className="group relative text-label-2 uppercase py-[15px] block font-bold tracking-ls-1"
@@ -136,7 +144,7 @@ export default function Header() {
                   <span className="span inline-block transition-transform duration-1 group-hover:translate-x-[20px] group-hover:text-gold-crayola">
                     {link.label}
                   </span>
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

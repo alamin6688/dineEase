@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { DM_Sans, Forum } from 'next/font/google'
 import './globals.css'
+import PageTransition from '@/components/PageTransition'
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
@@ -30,6 +31,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${dmSans.variable} ${forum.variable} antialiased`}>
+        {/* Global page transition overlay — fires on every route change */}
+        <PageTransition />
         {children}
       </body>
     </html>

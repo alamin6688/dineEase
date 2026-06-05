@@ -69,18 +69,20 @@ export default function Hero() {
               key={index}
               initial={{ opacity: 0 }}
               animate={{ 
-                opacity: isActive ? 0.6 : 0,
+                opacity: isActive ? 0.65 : 0,
                 zIndex: isActive ? 1 : 0 
               }}
-              transition={{ duration: 1.5, ease: 'easeInOut' }}
+              transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
               className="absolute inset-0 w-full h-full overflow-hidden will-change-transform"
             >
+              {/* Ken Burns: always start zoomed IN (1.1) and slowly drift further in to 1.18.
+                  This ensures every new slide feels like a zoom-in, never a zoom-out snap. */}
               <motion.div
-                initial={{ scale: 1 }}
-                animate={{ scale: isActive ? 1.08 : 1 }}
+                initial={{ scale: 1.1 }}
+                animate={{ scale: isActive ? 1.18 : 1.05 }}
                 transition={{ 
-                  duration: isActive ? 7 : 1.5, 
-                  ease: isActive ? 'linear' : 'easeInOut' 
+                  duration: isActive ? 8 : 1.8,
+                  ease: isActive ? [0.0, 0.0, 0.2, 1] : 'easeInOut'
                 }}
                 className="relative w-full h-full will-change-transform"
               >

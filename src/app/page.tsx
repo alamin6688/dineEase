@@ -12,6 +12,7 @@ import Testimonials from '@/components/sections/Testimonials'
 import Reservation from '@/components/sections/Reservation'
 import Features from '@/components/sections/Features'
 import Event from '@/components/sections/Event'
+import Newsletter from '@/components/sections/Newsletter'
 import Footer from '@/components/Footer'
 import BackToTop from '@/components/BackToTop'
 
@@ -55,6 +56,9 @@ export default function Home() {
 
         {/* 12. Upcoming blog updates */}
         <Event />
+
+        {/* 13. Newsletter / blog posts */}
+        <Newsletter />
       </main>
 
       {/* 13. Brand Footer */}
