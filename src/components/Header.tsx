@@ -53,7 +53,7 @@ export default function Header() {
   return (
     <>
       <header className={`fixed left-0 w-full z-[45] transition-all duration-2 ${headerTop} ${headerBg} ${headerPy}`}>
-        <div className="max-w-[1200px] mx-auto px-[20px] flex justify-between items-center gap-[8px]">
+        <div className="px-6 md:px-10 flex justify-between items-center gap-[8px]">
 
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
@@ -85,7 +85,7 @@ export default function Header() {
 
           {/* CTA + Hamburger */}
           <div className="flex items-center gap-[8px]">
-            <Btn href="/contact" className="hidden sm:block">
+            <Btn href="/contact" className="hidden sm:block btn-nav">
               Book A Table
             </Btn>
 

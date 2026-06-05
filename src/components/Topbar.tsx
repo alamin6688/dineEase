@@ -23,7 +23,7 @@ export default function Topbar() {
       }`}
       style={{ height: '40px' }}
     >
-      <div className="max-w-[1200px] mx-auto px-[16px] lg:px-[20px] flex items-center justify-between lg:justify-center gap-[30px] font-dmSans text-[1.2rem] text-quick-silver h-full">
+      <div className="px-6 md:px-10 flex items-center justify-between lg:justify-center gap-[30px] font-dmSans text-[1.2rem] text-quick-silver h-full">
         {/* Address */}
         <div className="items-center gap-[6px] hidden lg:flex">
           <IoLocationOutline className="text-gold-crayola text-[1.4rem] flex-shrink-0" />
