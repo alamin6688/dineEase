@@ -56,11 +56,11 @@ export default function Footer() {
             {/* Brand Logo */}
             <div className="flex justify-center mb-[40px]">
               <Image
-                src="/assets/images/logo.svg"
-                alt="DineEase Logo"
+                src="/assets/images/logo.png"
+                alt="Spice Valley Logo"
                 width={160}
-                height={50}
-                className="w-[160px] h-auto"
+                height={100}
+                className="h-[65px] w-auto object-contain mx-auto"
               />
             </div>
 
@@ -70,10 +70,10 @@ export default function Footer() {
             </address>
 
             <a
-              href="mailto:booking@dineease.com"
+              href="mailto:booking@spicevalley.com"
               className="text-quick-silver hover:text-gold-crayola transition-colors text-body-2 block mb-[10px]"
             >
-              booking@dineease.com
+              booking@spicevalley.com
             </a>
 
             <a
@@ -152,7 +152,7 @@ export default function Footer() {
         {/* Footer Bottom copyright */}
         <div className="border-t border-white-alpha-10 pt-[30px] text-center text-quick-silver text-[1.4rem] font-dmSans">
           <p>
-            &copy; 2022 DineEase. All Rights Reserved | Crafted by{' '}
+            &copy; 2022 Spice Valley. All Rights Reserved | Crafted by{' '}
             <a
               href="https://github.com/codewithsadee"
               target="_blank"

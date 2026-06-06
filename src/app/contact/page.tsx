@@ -9,8 +9,8 @@ import ContactInfo from '@/components/sections/ContactInfo'
 import ContactForm from '@/components/sections/ContactForm'
 
 export const metadata: Metadata = {
-  title: 'Contact Us — DineEase',
-  description: 'Get in touch with DineEase. Write us, call us, or visit us at our restaurant location.',
+  title: 'Contact Us — Spice Valley',
+  description: 'Get in touch with Spice Valley. Write us, call us, or visit us at our restaurant location.',
 }
 
 export default function ContactPage() {

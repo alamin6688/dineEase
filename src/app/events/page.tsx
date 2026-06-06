@@ -8,8 +8,8 @@ import EventsForm from '@/components/sections/EventsForm'
 import PreFooter from '@/components/sections/PreFooter'
 
 export const metadata: Metadata = {
-  title: 'Event Requests — DineEase',
-  description: 'Book your bespoke catering and private events at DineEase. We design tailored experiences and Michelin-inspired menus.',
+  title: 'Event Requests — Spice Valley',
+  description: 'Book your bespoke catering and private events at Spice Valley. We design tailored experiences and Michelin-inspired menus.',
 }
 
 export default function EventsPage() {

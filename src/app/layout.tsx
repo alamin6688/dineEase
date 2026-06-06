@@ -16,8 +16,8 @@ const forum = Forum({
 })
 
 export const metadata: Metadata = {
-  title: 'DineEase | Restaurant Landing Page',
-  description: 'DineEase - Delicious Story & Flavors for Royalty. Enjoy fresh environment, hygienic food, and recipes cooked by skilled chefs.',
+  title: 'Spice Valley | Restaurant Landing Page',
+  description: 'Spice Valley - Delicious Story & Flavors for Royalty. Enjoy fresh environment, hygienic food, and recipes cooked by skilled chefs.',
   icons: {
     icon: '/favicon.ico',
   },

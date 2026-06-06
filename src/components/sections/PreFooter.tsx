@@ -1,16 +1,12 @@
 'use client'
 import React from 'react'
-import { IoArrowUpOutline, IoShareSocialOutline } from 'react-icons/io5'
+import { IoShareSocialOutline } from 'react-icons/io5'
 
 export default function PreFooter() {
-  const handleScrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
-
   const handleShare = async () => {
     const shareData = {
-      title: 'DineEase — Spice Valley Events',
-      text: 'Check out DineEase catering and event requests!',
+      title: 'Spice Valley Events',
+      text: 'Check out Spice Valley catering and event requests!',
       url: window.location.href,
     }
     try {

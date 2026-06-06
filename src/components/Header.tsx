@@ -67,12 +67,12 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
             <Image
-              src="/assets/images/logo.svg"
-              alt="DineEase Logo"
+              src="/assets/images/logo.png"
+              alt="Spice Valley Logo"
               width={160}
-              height={50}
+              height={100}
               priority
-              className="w-[120px] sm:w-[160px] h-auto"
+              className="h-[40px] sm:h-[52px] w-auto object-contain"
             />
           </Link>
 
@@ -130,11 +130,11 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" onClick={() => setNavOpen(false)} className="mx-auto mb-[60px] flex-shrink-0">
           <Image
-            src="/assets/images/logo.svg"
-            alt="DineEase Logo"
+            src="/assets/images/logo.png"
+            alt="Spice Valley Logo"
             width={160}
-            height={50}
-            className="w-[140px] h-auto"
+            height={100}
+            className="h-[55px] w-auto object-contain"
           />
         </Link>
 

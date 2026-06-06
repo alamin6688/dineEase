@@ -47,7 +47,7 @@ export default function Preloader() {
         
         {/* Animated Text */}
         <h2 className="text-[clamp(2.5rem,2rem+3vw,5.5rem)] font-bold uppercase tracking-[16px] pl-[16px] text-transparent bg-loading-gradient bg-[length:500%] bg-clip-text [-webkit-text-stroke:0.5px_hsla(0,3%,7%,1)] animate-loading-text leading-none font-dmSans">
-          DineEase
+          Spice Valley
         </h2>
       </div>
     </div>
