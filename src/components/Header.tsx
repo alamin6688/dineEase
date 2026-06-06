@@ -12,6 +12,7 @@ const navLinks = [
   { label: 'Menus', href: '/#menu' },
   { label: 'About Us', href: '/#about' },
   { label: 'Our Chefs', href: '/#features' },
+  { label: 'Events', href: '/events' },
   { label: 'Contact', href: '/contact' },
 ]
 
@@ -20,8 +21,11 @@ export default function Header() {
   const [navOpen, setNavOpen] = useState(false)
   const pathname = usePathname()
 
-  // On /contact the navbar is always white regardless of scroll
+  const isHomepage = pathname === '/'
+  // On /contact the navbar is always white
   const isContactPage = pathname === '/contact'
+  // On /events the navbar is always dark
+  const isEventsPage = pathname === '/events'
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY >= 50)
@@ -37,15 +41,20 @@ export default function Header() {
 
   // ── Derived style tokens ────────────────────────────────────────────────
   // Contact page: always white, always top-0
+  // Events page: always dark, always top-0
   // Landing page: transparent → dark on scroll
   const headerBg = isContactPage
     ? 'bg-white border-b border-[hsla(0,0%,0%,0.08)] shadow-[0_2px_16px_hsla(0,0%,0%,0.06)]'
-    : scrolled
+    : isEventsPage || scrolled
       ? 'bg-eerie-black-4 border-b border-black-alpha-15 shadow-1'
       : 'bg-transparent border-b border-transparent'
 
-  const headerTop = isContactPage ? 'top-0' : scrolled ? 'top-0' : 'top-0 sm:top-[40px]'
-  const headerPy  = isContactPage ? 'py-[18px]' : scrolled ? 'py-[20px]' : 'py-[40px]'
+  const headerTop = isHomepage ? (scrolled ? 'top-0' : 'top-0 sm:top-[40px]') : 'top-0'
+  const headerPy  = isContactPage 
+    ? 'py-[18px]' 
+    : isEventsPage || scrolled 
+      ? 'py-[20px]' 
+      : 'py-[40px]'
 
   const linkColor   = isContactPage ? 'text-smoky-black-1 hover:text-gold-crayola' : 'text-white'
   const burgerColor = isContactPage ? 'bg-smoky-black-1' : 'bg-white'
