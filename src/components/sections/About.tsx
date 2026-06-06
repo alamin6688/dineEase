@@ -74,7 +74,7 @@ export default function About() {
           </motion.div>
 
           <motion.div variants={fadeInUp}>
-            <Btn href="#menu">Read More</Btn>
+            <Btn href="/about">Read More</Btn>
           </motion.div>
         </motion.div>
 

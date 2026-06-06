@@ -10,7 +10,7 @@ import Separator from './Separator'
 const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'Menus', href: '/#menu' },
-  { label: 'About Us', href: '/#about' },
+  { label: 'About Us', href: '/about' },
   { label: 'Our Chefs', href: '/#features' },
   { label: 'Events', href: '/events' },
   { label: 'Contact', href: '/contact' },
