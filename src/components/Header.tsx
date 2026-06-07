@@ -3,12 +3,14 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { IoCloseOutline } from 'react-icons/io5'
+import { IoCloseOutline, IoCartOutline } from 'react-icons/io5'
 import Btn from './Btn'
 import Separator from './Separator'
+import { useCart } from '@/context/CartContext'
 
 const navLinks = [
   { label: 'Home', href: '/' },
+  { label: 'Menu', href: '/menu' },
   { label: 'Events', href: '/events' },
   { label: 'Reserve', href: '/reserve' },
   { label: 'About Us', href: '/about' },
@@ -20,12 +22,13 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [navOpen, setNavOpen] = useState(false)
   const pathname = usePathname()
+  const { cartCount, setIsCartOpen } = useCart()
 
   const isHomepage = pathname === '/'
   // On /contact the navbar is always white
   const isContactPage = pathname === '/contact'
-  // On /events, /reserve or /location the navbar is always dark
-  const isEventsPage = pathname === '/events' || pathname === '/reserve' || pathname === '/location'
+  // On /events, /reserve, /location or /menu the navbar is always dark
+  const isEventsPage = pathname === '/events' || pathname === '/reserve' || pathname === '/location' || pathname.startsWith('/menu')
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY >= 50)
@@ -93,10 +96,29 @@ export default function Header() {
           </nav>
 
           {/* CTA + Hamburger */}
-          <div className="flex items-center gap-[8px]">
-            <Btn href="/contact" className="hidden sm:block btn-nav">
-              Book A Table
-            </Btn>
+          <div className="flex items-center gap-[12px]">
+            {pathname.startsWith('/menu') || cartCount > 0 ? (
+              <button
+                onClick={() => setIsCartOpen(true)}
+                className={`relative p-[10px] rounded-full flex items-center justify-center transition-all border cursor-pointer ${
+                  isContactPage 
+                    ? 'bg-transparent border-[hsla(0,0%,0%,0.1)] hover:border-gold-crayola/30 hover:bg-gold-crayola/10' 
+                    : 'bg-white-alpha-10 border-white-alpha-20 hover:border-gold-crayola/30 hover:bg-gold-crayola/20'
+                }`}
+                aria-label="Open cart"
+              >
+                <IoCartOutline size={22} className={isContactPage ? 'text-smoky-black-1' : 'text-white'} />
+                {cartCount > 0 && (
+                  <span className="absolute -top-1 -right-1 w-[20px] h-[20px] bg-gold-crayola text-smoky-black-1 text-[1.1rem] font-bold rounded-full flex items-center justify-center animate-pulse">
+                    {cartCount}
+                  </span>
+                )}
+              </button>
+            ) : (
+              <Btn href="/contact" className="hidden sm:block btn-nav">
+                Book A Table
+              </Btn>
+            )}
 
             {/* Mobile Hamburger */}
             <button

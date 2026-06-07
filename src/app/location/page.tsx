@@ -139,7 +139,7 @@ export default function LocationPage() {
 
                   {/* Get Directions badge bottom-right */}
                   <a
-                    href="https://maps.app.goo.gl/y3hN7W6N3k1eLh6P6"
+                    href="https://www.google.com/maps/search/?api=1&query=nullnull&query_place_id=ChIJax7nR-Sme0gRWhW6U7PLQH8"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="absolute bottom-4 right-4 bg-smoky-black-1 text-white hover:text-gold-crayola flex items-center gap-[10px] px-[20px] py-[12px] rounded-lg text-label-2 font-bold uppercase tracking-ls-1 transition-all shadow-md"

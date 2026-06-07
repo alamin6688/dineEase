@@ -3,6 +3,7 @@ import { DM_Sans, Forum } from 'next/font/google'
 import './globals.css'
 import PageTransition, { NavigationProvider } from '@/components/PageTransition'
 import SmoothScroll from '@/components/SmoothScroll'
+import { CartProvider } from '@/context/CartContext'
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
@@ -33,11 +34,13 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body className={`${dmSans.variable} ${forum.variable} antialiased`}>
         <SmoothScroll>
-          <NavigationProvider>
-            {/* Global page transition overlay — fires on every route change */}
-            <PageTransition />
-            {children}
-          </NavigationProvider>
+          <CartProvider>
+            <NavigationProvider>
+              {/* Global page transition overlay — fires on every route change */}
+              <PageTransition />
+              {children}
+            </NavigationProvider>
+          </CartProvider>
         </SmoothScroll>
       </body>
     </html>
