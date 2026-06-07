@@ -9,11 +9,10 @@ import Separator from './Separator'
 
 const navLinks = [
   { label: 'Home', href: '/' },
-  { label: 'Menus', href: '/#menu' },
-  { label: 'About Us', href: '/about' },
-  { label: 'Our Chefs', href: '/#features' },
   { label: 'Events', href: '/events' },
   { label: 'Reserve', href: '/reserve' },
+  { label: 'About Us', href: '/about' },
+  { label: 'Location', href: '/location' },
   { label: 'Contact', href: '/contact' },
 ]
 
@@ -25,8 +24,8 @@ export default function Header() {
   const isHomepage = pathname === '/'
   // On /contact the navbar is always white
   const isContactPage = pathname === '/contact'
-  // On /events or /reserve the navbar is always dark
-  const isEventsPage = pathname === '/events' || pathname === '/reserve'
+  // On /events, /reserve or /location the navbar is always dark
+  const isEventsPage = pathname === '/events' || pathname === '/reserve' || pathname === '/location'
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY >= 50)
