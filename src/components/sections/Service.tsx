@@ -7,9 +7,9 @@ import SectionSubtitle from '../SectionSubtitle'
 import { fadeInUp, staggerContainer } from '@/utils/animations'
 
 const serviceItems = [
-  { title: 'Breakfast', img: '/assets/images/service-1.jpg', href: '#menu' },
-  { title: 'Appetizers', img: '/assets/images/service-2.jpg', href: '#menu' },
-  { title: 'Drinks', img: '/assets/images/service-3.jpg', href: '#menu' },
+  { title: 'Breakfast', img: '/assets/images/service-1.jpg', href: '/menu' },
+  { title: 'Appetizers', img: '/assets/images/service-2.jpg', href: '/menu' },
+  { title: 'Drinks', img: '/assets/images/service-3.jpg', href: '/menu' },
 ]
 
 export default function Service() {

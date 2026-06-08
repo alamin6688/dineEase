@@ -150,7 +150,7 @@ export default function Hero() {
 
             {/* View Menu Button */}
             <motion.div variants={fadeInUp}>
-              <Btn href="#menu">View Our Menu</Btn>
+              <Btn href="/menu">View Our Menu</Btn>
             </motion.div>
           </motion.div>
         </AnimatePresence>

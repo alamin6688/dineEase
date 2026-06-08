@@ -155,7 +155,7 @@ export default function Menu() {
             During winter daily from <span className="text-gold-crayola font-bold">7:00 pm</span> to <span className="text-gold-crayola font-bold">9:00 pm</span>
           </motion.p>
           <motion.div variants={fadeInUp}>
-            <Btn href="#reservation">View All Menu</Btn>
+            <Btn href="/menu">View All Menu</Btn>
           </motion.div>
         </motion.div>
 

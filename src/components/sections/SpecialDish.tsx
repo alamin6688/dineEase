@@ -80,7 +80,7 @@ export default function SpecialDish() {
           </motion.div>
 
           <motion.div variants={fadeInUp}>
-            <Btn href="#menu">View All Menu</Btn>
+            <Btn href="/menu">View All Menu</Btn>
           </motion.div>
         </motion.div>
       </div>
