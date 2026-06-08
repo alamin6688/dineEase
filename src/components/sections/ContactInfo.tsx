@@ -9,19 +9,19 @@ const infoCards = [
   {
     icon: IoChatbubbleEllipsesOutline,
     title: 'Write Us',
-    lines: ['info@tastyc.com', 'reservation@tastyc.com'],
-    href: 'mailto:info@tastyc.com',
+    lines: ['info@spicevalley.co.uk', 'booking@spicevalley.co.uk'],
+    href: 'mailto:info@spicevalley.co.uk',
   },
   {
     icon: IoCallOutline,
     title: 'Call Us',
-    lines: ['+76 (094) 754 43 71', '+76 (093) 753 43 72'],
-    href: 'tel:+76094754431',
+    lines: ['+44 1204 697222'],
+    href: 'tel:+441204697222',
   },
   {
     icon: IoLocationOutline,
     title: 'Visit Us',
-    lines: ['Canada, Toronto,', 'North Avenue 31B'],
+    lines: ['171 Lee Lane, Horwich,', 'Bolton, BL6 7JD'],
     href: 'https://maps.google.com',
   },
 ]

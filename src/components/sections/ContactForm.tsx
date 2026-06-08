@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import SectionSubtitle from '../SectionSubtitle'
 import { fadeInUp, staggerContainer } from '@/utils/animations'
+import { toast } from 'react-hot-toast'
 
 export default function ContactForm() {
   const [form, setForm] = useState({
@@ -15,13 +16,18 @@ export default function ContactForm() {
   const [sent, setSent] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value })
+    let value = e.target.value
+    if (e.target.name === 'phone') {
+      value = value.replace(/[^0-9]/g, '')
+    }
+    setForm({ ...form, [e.target.name]: value })
   }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     setSent(true)
     setTimeout(() => setSent(false), 4000)
+    toast.success('Message sent successfully!')
     setForm({ firstName: '', lastName: '', email: '', phone: '', message: '' })
   }
 
@@ -117,7 +123,8 @@ export default function ContactForm() {
                 name="phone"
                 value={form.phone}
                 onChange={handleChange}
-                placeholder="Phone Number"
+                placeholder="Phone Number*"
+                required
                 className={inputBase}
               />
             </div>

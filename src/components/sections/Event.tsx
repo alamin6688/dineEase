@@ -9,19 +9,19 @@ import { fadeInUp, staggerContainer } from '@/utils/animations'
 const eventItems = [
   { 
     img: '/assets/images/event-1.jpg', 
-    date: '15/09/2022', 
+    date: '15/09/2026', 
     category: 'Food, Flavour', 
     title: "Flavour so good you'll try to eat with your eyes." 
   },
   { 
     img: '/assets/images/event-2.jpg', 
-    date: '08/09/2022', 
+    date: '08/09/2026', 
     category: 'Healthy Food', 
     title: "Flavour so good you'll try to eat with your eyes." 
   },
   { 
     img: '/assets/images/event-3.jpg', 
-    date: '03/09/2022', 
+    date: '03/09/2026', 
     category: 'Recipe', 
     title: "Flavour so good you'll try to eat with your eyes." 
   },
@@ -104,7 +104,7 @@ export default function Event() {
         </motion.ul>
 
         {/* View Our Blog Button with fade-in */}
-        <motion.div 
+        {/* <motion.div 
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
@@ -114,7 +114,7 @@ export default function Event() {
           <motion.div variants={fadeInUp}>
             <Btn href="#reservation">View Our Blog</Btn>
           </motion.div>
-        </motion.div>
+        </motion.div> */}
 
       </div>
     </section>

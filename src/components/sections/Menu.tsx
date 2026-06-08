@@ -152,7 +152,7 @@ export default function Menu() {
             variants={fadeInUp}
             className="text-quick-silver text-body-2 tracking-ls-1 mb-[25px] leading-relaxed"
           >
-            During winter daily from <span className="text-gold-crayola font-bold">7:00 pm</span> to <span className="text-gold-crayola font-bold">9:00 pm</span>
+            During winter daily from <span className="text-gold-crayola font-bold">19:00</span> to <span className="text-gold-crayola font-bold">21:00</span>
           </motion.p>
           <motion.div variants={fadeInUp}>
             <Btn href="/menu">View All Menu</Btn>

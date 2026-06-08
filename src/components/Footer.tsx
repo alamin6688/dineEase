@@ -3,11 +3,14 @@ import React from 'react'
 import Image from 'next/image'
 import Separator from './Separator'
 import Btn from './Btn'
+import { toast } from 'react-hot-toast'
 
 export default function Footer() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle subscribe logic
+    const formEl = e.currentTarget as HTMLFormElement
+    formEl.reset()
+    toast.success('Successfully subscribed to newsletter!')
   }
 
   return (
@@ -21,27 +24,37 @@ export default function Footer() {
           {/* Left Column: Navigation Links */}
           <ul className="flex flex-col gap-[20px] text-center lg:text-left order-2 lg:order-1">
             <li>
-              <a href="#home" className="text-quick-silver hover:text-gold-crayola transition-colors uppercase font-bold tracking-ls-4 text-[1.4rem]">
+              <a href="/home" className="text-quick-silver hover:text-gold-crayola transition-colors uppercase font-bold tracking-ls-4 text-[1.4rem]">
                 Home
               </a>
             </li>
             <li>
-              <a href="#menu" className="text-quick-silver hover:text-gold-crayola transition-colors uppercase font-bold tracking-ls-4 text-[1.4rem]">
+              <a href="/menu" className="text-quick-silver hover:text-gold-crayola transition-colors uppercase font-bold tracking-ls-4 text-[1.4rem]">
                 Menus
               </a>
             </li>
             <li>
-              <a href="#about" className="text-quick-silver hover:text-gold-crayola transition-colors uppercase font-bold tracking-ls-4 text-[1.4rem]">
+              <a href="/events" className="text-quick-silver hover:text-gold-crayola transition-colors uppercase font-bold tracking-ls-4 text-[1.4rem]">
+                Events
+              </a>
+            </li>
+            <li>
+              <a href="/reserve" className="text-quick-silver hover:text-gold-crayola transition-colors uppercase font-bold tracking-ls-4 text-[1.4rem]">
+                Reservation
+              </a>
+            </li>
+            <li>
+              <a href="/about" className="text-quick-silver hover:text-gold-crayola transition-colors uppercase font-bold tracking-ls-4 text-[1.4rem]">
                 About Us
               </a>
             </li>
             <li>
-              <a href="#features" className="text-quick-silver hover:text-gold-crayola transition-colors uppercase font-bold tracking-ls-4 text-[1.4rem]">
-                Our Chefs
+              <a href="/location" className="text-quick-silver hover:text-gold-crayola transition-colors uppercase font-bold tracking-ls-4 text-[1.4rem]">
+                Location
               </a>
             </li>
             <li>
-              <a href="#reservation" className="text-quick-silver hover:text-gold-crayola transition-colors uppercase font-bold tracking-ls-4 text-[1.4rem]">
+              <a href="/contact" className="text-quick-silver hover:text-gold-crayola transition-colors uppercase font-bold tracking-ls-4 text-[1.4rem]">
                 Contact
               </a>
             </li>
@@ -66,25 +79,25 @@ export default function Footer() {
 
             {/* Contact Info */}
             <address className="text-quick-silver text-body-2 not-italic mb-[20px]">
-              Restaurant St, Delicious City, London 9578, UK
+              171 Lee Lane, Horwich, Bolton, BL6 7JD
             </address>
 
             <a
-              href="mailto:booking@spicevalley.com"
+              href="mailto:info@spicevalley.co.uk"
               className="text-quick-silver hover:text-gold-crayola transition-colors text-body-2 block mb-[10px]"
             >
-              booking@spicevalley.com
+              info@spicevalley.co.uk
             </a>
 
             <a
-              href="tel:+88123123456"
+              href="tel:+441204697222"
               className="text-quick-silver hover:text-gold-crayola transition-colors text-body-2 block mb-[20px]"
             >
-              Booking Request : +88-123-123456
+              Booking Request : +44 1204 697222
             </a>
 
             <p className="text-quick-silver text-body-2 mb-[30px]">
-              Open : 09:00 am - 01:00 pm
+              Open : Tue - Sun (Times vary)
             </p>
 
             {/* Rotating Separator */}

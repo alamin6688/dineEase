@@ -13,6 +13,7 @@ import {
   IoArrowForward
 } from 'react-icons/io5'
 import { fadeInUp, staggerContainer } from '@/utils/animations'
+import { toast } from 'react-hot-toast'
 
 export default function EventsForm() {
   const [form, setForm] = useState({
@@ -66,7 +67,11 @@ export default function EventsForm() {
   const [sent, setSent] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value })
+    let value = e.target.value
+    if (e.target.name === 'phoneNumber') {
+      value = value.replace(/[^0-9]/g, '')
+    }
+    setForm({ ...form, [e.target.name]: value })
   }
 
   const handleSelectRange = (range: string) => {
@@ -78,6 +83,7 @@ export default function EventsForm() {
     e.preventDefault()
     setSent(true)
     setTimeout(() => setSent(false), 4000)
+    toast.success('Event request sent successfully!')
     // Clear form
     setForm({
       eventDate: minDate,
@@ -106,15 +112,10 @@ export default function EventsForm() {
     return dateStr
   }
 
-  // Format time (HH:mm) to AM/PM style
+  // Format time (HH:mm) to 24h style
   const formatTime = (timeStr: string) => {
-    if (!timeStr) return '-:- -'
-    const [hours, minutes] = timeStr.split(':')
-    const hh = parseInt(hours, 10)
-    const ampm = hh >= 12 ? 'PM' : 'AM'
-    const h12 = hh % 12 || 12
-    const paddedH = h12 < 10 ? `0${h12}` : h12
-    return `${paddedH}:${minutes} ${ampm}`
+    if (!timeStr) return '--:--'
+    return timeStr
   }
 
   const inputBase =

@@ -4,6 +4,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import BackToTop from '@/components/BackToTop'
 import BodyLoader from '@/components/BodyLoader'
+import { toast } from 'react-hot-toast'
 import { motion, AnimatePresence } from 'framer-motion'
 import { 
   IoCalendarOutline, 
@@ -316,17 +317,9 @@ export default function ReservePage() {
     })
   }
 
-  // Format 24-hour time to 12-hour format with AM/PM
+  // Format time (keep in 24h format)
   const format12HourTime = (time24: string) => {
-    if (!time24) return ''
-    const parts = time24.split(':')
-    if (parts.length !== 2) return time24
-    const hrs = parseInt(parts[0], 10)
-    const mins = parts[1]
-    const ampm = hrs >= 12 ? 'PM' : 'AM'
-    const displayHrs = hrs % 12 || 12
-    const paddedHrs = displayHrs < 10 ? `0${displayHrs}` : displayHrs
-    return `${paddedHrs}:${mins} ${ampm}`
+    return time24
   }
 
   // Format hold timer into MM:SS
@@ -358,6 +351,7 @@ export default function ReservePage() {
     saveReservations(updated)
     setLastConfirmedReservation(newRes)
     setShowSuccessModal(true)
+    toast.success('Reservation Completed successfully!')
   }
 
   // Cancel Reservation
@@ -824,10 +818,10 @@ export default function ReservePage() {
                           </label>
                           <input
                             type="tel"
-                            placeholder="+1 (555) 000-0000"
+                            placeholder="1234567890"
                             required
                             value={phone}
-                            onChange={(e) => setPhone(e.target.value)}
+                            onChange={(e) => setPhone(e.target.value.replace(/[^0-9]/g, ''))}
                             className={inputBaseClass}
                           />
                         </div>

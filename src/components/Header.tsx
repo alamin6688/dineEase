@@ -207,23 +207,23 @@ export default function Header() {
             Visit Us
           </h3>
           <p className="text-quick-silver my-[10px]">
-            Restaurant St, Delicious City, <br /> London 9578, UK
+            171 Lee Lane, Horwich, <br /> Bolton, BL6 7JD
           </p>
 
           <Separator className="my-[30px] mx-auto animate-rotate-slow" />
 
           <p className="font-bold text-white mb-[10px]">Booking Request</p>
           <a
-            href="tel:+11234567890"
+            href="tel:+441204697222"
             className="text-gold-crayola hover:text-white transition-colors text-title-3 block font-forum"
           >
-            +1 123 456 7890
+            +44 1204 697222
           </a>
           <a
-            href="mailto:booking@restaurant.com"
+            href="mailto:info@spicevalley.co.uk"
             className="text-quick-silver hover:text-gold-crayola transition-colors mt-[10px] block"
           >
-            booking@restaurant.com
+            info@spicevalley.co.uk
           </a>
         </div>
       </div>

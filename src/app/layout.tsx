@@ -4,6 +4,7 @@ import './globals.css'
 import PageTransition, { NavigationProvider } from '@/components/PageTransition'
 import SmoothScroll from '@/components/SmoothScroll'
 import { CartProvider } from '@/context/CartContext'
+import { Toaster } from 'react-hot-toast'
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
@@ -36,6 +37,7 @@ export default function RootLayout({
         <SmoothScroll>
           <CartProvider>
             <NavigationProvider>
+              <Toaster position="top-center" toastOptions={{ duration: 3000 }} />
               {/* Global page transition overlay — fires on every route change */}
               <PageTransition />
               {children}

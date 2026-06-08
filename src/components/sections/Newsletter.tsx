@@ -13,26 +13,26 @@ const blogPosts = [
     img: '/assets/images/service-1.jpg',
     title: 'Business Breakfast',
     excerpt:
-      'Consectetur adipisicing elit. Soluta, impedit, saepe. Unde minima distinctio officiis amet temporibus, consequuntur dolorem dicta…',
-    author: 'Oleksandr',
-    date: 'May 1, 2021',
+      'Check out our latest menu, featuring fresh, locally-sourced ingredients and innovative dishes prepared with care and attention to detail.',
+    author: 'Spice Valley',
+    date: 'June 10, 2026',
   },
   {
     category: ['Deserts'],
     img: '/assets/images/service-2.jpg',
     title: 'Pancakes in Chocolate',
     excerpt:
-      'Consectetur adipisicing elit. Soluta, impedit, saepe. Unde minima distinctio officiis amet temporibus, consequuntur dolorem dicta…',
-    author: 'Oleksandr',
-    date: 'May 1, 2021',
+      'Try our new pancakes with chocolate sauce, fresh fruits, and whipped cream. A perfect treat for any time of day! A perfect treat for any time of day!',
+    author: 'Spice Valley',
+    date: 'June 10, 2026',
   },
   {
     category: ['Deserts'],
     img: '/assets/images/service-3.jpg',
     title: 'Tuna & Tomatoes',
     excerpt:
-      'Consectetur adipisicing elit. Soluta, impedit, saepe. Unde minima distinctio officiis amet temporibus, consequuntur dolorem dicta…',
-    author: 'Oleksandr',
+      'Discover our new tuna and tomatoes salad, prepared with fresh ingredients and a unique dressing. A light and healthy choice!',
+    author: 'Spice Valley',
     date: 'May 1, 2021',
   },
 ]
@@ -116,12 +116,12 @@ export default function Newsletter() {
 
                 <p className="text-body-2 text-davys-grey leading-relaxed mb-[4px]">
                   {post.excerpt}{' '}
-                  <Link
+                  {/* <Link
                     href="#newsletter"
                     className="text-gold-crayola font-bold uppercase text-label-2 tracking-ls-3 hover:text-smoky-black-1 transition-colors"
                   >
                     Read More
-                  </Link>
+                  </Link> */}
                 </p>
               </div>
 
@@ -151,15 +151,15 @@ export default function Newsletter() {
             variants={fadeInUp}
             className="text-body-2 text-davys-grey max-w-[540px] text-center sm:text-left leading-relaxed"
           >
-            Read the news of our restaurant, recipes for delicious meals, tips for your home kitchen in our blog!
+            Read our menu, recipes for delicious meals, tips for your home kitchen in our blog! See all in our menu!
           </motion.p>
 
           <motion.div variants={fadeInUp} className="shrink-0">
             <Link
-              href="#newsletter"
+              href="/menu"
               className="inline-flex items-center gap-[8px] bg-gold-crayola text-black font-bold uppercase tracking-ls-3 text-label-2 px-[28px] py-[14px] hover:bg-smoky-black-1 hover:text-gold-crayola transition-all duration-[300ms] shadow-[0_4px_16px_hsla(38,61%,73%,0.35)] hover:shadow-[0_4px_16px_hsla(0,0%,0%,0.3)]"
             >
-              All Publications
+              See All Menu
             </Link>
           </motion.div>
         </motion.div>

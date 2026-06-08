@@ -27,20 +27,20 @@ export default function Topbar() {
         {/* Address */}
         <div className="items-center gap-[6px] hidden lg:flex">
           <IoLocationOutline className="text-gold-crayola text-[1.4rem] flex-shrink-0" />
-          <span className="leading-none text-label-1">Restaurant St, Delicious City, London 9578, UK</span>
+          <span className="leading-none text-label-1">171 Lee Lane, Horwich, Bolton, BL6 7JD</span>
         </div>
 
         {/* Working Hours */}
         <div className="items-center gap-[6px] hidden lg:flex mr-auto">
           <IoTimeOutline className="text-gold-crayola text-[1.4rem] flex-shrink-0" />
-          <span className="leading-none text-label-1">Daily : 8.00 am to 10.00 pm</span>
+          <span className="leading-none text-label-1">Tue - Sun : 12:00 - 23:00</span>
         </div>
 
         {/* Phone Call */}
         <div className="flex items-center gap-[6px]">
           <IoCallOutline className="text-gold-crayola text-[1.4rem] flex-shrink-0" />
-          <a href="tel:+11234567890" className="hover:text-gold-crayola transition-colors leading-none text-label-1">
-            +1 123 456 7890
+          <a href="tel:+441204697222" className="hover:text-gold-crayola transition-colors leading-none text-label-1">
+            +44 1204 697222
           </a>
         </div>
 
@@ -49,8 +49,8 @@ export default function Topbar() {
         {/* Email Booking */}
         <div className="flex items-center gap-[6px]">
           <IoMailOutline className="text-gold-crayola text-[1.4rem] flex-shrink-0" />
-          <a href="mailto:booking@restaurant.com" className="hover:text-gold-crayola transition-colors leading-none text-label-1">
-            booking@restaurant.com
+          <a href="mailto:info@spicevalley.co.uk" className="hover:text-gold-crayola transition-colors leading-none text-label-1">
+            info@spicevalley.co.uk
           </a>
         </div>
       </div>
