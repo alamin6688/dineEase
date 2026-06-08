@@ -179,7 +179,7 @@ export default function Hero() {
 
       {/* Floating Circular Rotating "Book A Table" Button */}
       <Link
-        href="#reservation"
+        href="/reserve"
         className="absolute bottom-[15px] right-[15px] xl:bottom-[50px] xl:right-[50px] z-20 bg-gold-crayola w-[110px] h-[110px] p-[12px] flex flex-col justify-center items-center shadow-1 transition-transform hover:scale-[1.05] group scale-[0.6] sm:scale-[0.7] xl:scale-100"
       >
         <div className="absolute inset-0 border border-gold-crayola animate-rotate-slow pointer-events-none group-hover:scale-[1.05] transition-all" />
