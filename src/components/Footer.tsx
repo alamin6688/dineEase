@@ -117,14 +117,14 @@ export default function Footer() {
 
             {/* Subscription Form */}
             <form onSubmit={handleSubmit} className="relative w-full max-w-[460px] mx-auto">
-              <div className="relative flex flex-col sm:block">
+              <div className="newsletter-form-wrapper">
                 <input
                   type="email"
                   placeholder="Your Email"
                   required
-                  className="input-field w-full pr-0 sm:pr-[205px] mb-[20px] sm:mb-0 text-[1.4rem]"
+                  className="input-field text-[1.4rem]"
                 />
-                <Btn type="submit" variant="secondary" className="sm:absolute sm:top-0 sm:right-0 sm:bottom-0 w-full sm:w-auto h-[56px] flex items-center justify-center">
+                <Btn type="submit" variant="secondary">
                   Subscribe
                 </Btn>
               </div>

@@ -339,3 +339,62 @@ html.lenis body {
   z-index: 5;
 }
 
+/* NEWSLETTER FORM WRAPPER FOR FOOTER */
+.newsletter-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+@media (max-width: 639px) {
+  .newsletter-form-wrapper .input-field {
+    margin-bottom: 20px;
+  }
+  .newsletter-form-wrapper .btn {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 640px) {
+  .newsletter-form-wrapper {
+    flex-direction: row;
+    align-items: stretch;
+    border: 1px solid hsla(0, 0%, 100%, 0.1);
+    background-color: transparent;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 250ms ease;
+  }
+  
+  .newsletter-form-wrapper:focus-within {
+    border-color: hsl(38, 61%, 73%);
+  }
+
+  .newsletter-form-wrapper .input-field {
+    border: none !important;
+    background-color: transparent !important;
+    margin-bottom: 0 !important;
+    flex-grow: 1;
+    padding-right: 20px;
+  }
+  
+  .newsletter-form-wrapper .input-field:focus {
+    background-color: transparent !important;
+  }
+
+  .newsletter-form-wrapper .btn {
+    border: none !important;
+    height: auto !important;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+}
+
+

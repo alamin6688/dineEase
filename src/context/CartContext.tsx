@@ -1,6 +1,6 @@
 'use client'
 import React, { createContext, useContext, useState, useEffect } from 'react'
-import { toast, Toaster } from 'react-hot-toast'
+import { toast } from 'react-hot-toast'
 
 
 export interface CartItem {
@@ -178,7 +178,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       placeOrder,
       removeOrder
     }}>
-      <Toaster position="top-right" reverseOrder={false} />
       {children}
     </CartContext.Provider>
   )

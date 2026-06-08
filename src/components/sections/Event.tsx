@@ -3,7 +3,6 @@ import React from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import SectionSubtitle from '../SectionSubtitle'
-import Btn from '../Btn'
 import { fadeInUp, staggerContainer } from '@/utils/animations'
 
 const eventItems = [

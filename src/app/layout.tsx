@@ -37,7 +37,7 @@ export default function RootLayout({
         <SmoothScroll>
           <CartProvider>
             <NavigationProvider>
-              <Toaster position="top-center" toastOptions={{ duration: 3000 }} />
+              <Toaster position="top-right" toastOptions={{ duration: 3000 }} />
               {/* Global page transition overlay — fires on every route change */}
               <PageTransition />
               {children}
