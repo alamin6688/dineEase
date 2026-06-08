@@ -68,20 +68,22 @@ export default function Header() {
         <div className="px-6 md:px-10 flex justify-between items-center gap-[8px]">
 
           {/* Logo */}
-          <Link href="/" className="flex-shrink-0">
-            <Image
-              src="/assets/images/logo.png"
-              alt="Spice Valley Logo"
-              width={160}
-              height={100}
-              priority
-              className="h-[40px] sm:h-[52px] w-auto object-contain"
-            />
-          </Link>
+          <div className="flex-1 flex justify-start">
+            <Link href="/" className="flex-shrink-0 flex items-center">
+              <Image
+                src="/assets/images/logo.png"
+                alt="Spice Valley Logo"
+                width={180}
+                height={112}
+                priority
+                className="h-[46px] sm:h-[60px] w-auto object-contain"
+              />
+            </Link>
+          </div>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden xl:block">
-            <ul className="flex items-center gap-[30px]">
+          <nav className="hidden xl:block flex-shrink-0">
+            <ul className="flex items-center gap-[20px] xl:gap-[24px] 2xl:gap-[30px]">
               {navLinks.map((link, idx) => (
                 <li key={idx}>
                   <Link
@@ -96,7 +98,7 @@ export default function Header() {
           </nav>
 
           {/* CTA + Hamburger */}
-          <div className="flex items-center gap-[12px]">
+          <div className="flex-1 flex justify-end items-center gap-[12px]">
             {pathname.startsWith('/menu') || cartCount > 0 ? (
               <button
                 onClick={() => setIsCartOpen(true)}
@@ -154,9 +156,9 @@ export default function Header() {
           <Image
             src="/assets/images/logo.png"
             alt="Spice Valley Logo"
-            width={160}
-            height={100}
-            className="h-[55px] w-auto object-contain"
+            width={180}
+            height={112}
+            className="h-[65px] w-auto object-contain"
           />
         </Link>
 

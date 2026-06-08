@@ -114,21 +114,21 @@ img {
 
 /* Compact variant used in the navbar — smaller h-padding on mobile */
 .btn-nav {
-  padding: 8px 16px;
+  padding: 8px 14px;
   letter-spacing: 1.5px;
   font-size: 1.1rem;
 }
 
 @media (min-width: 640px) {
   .btn-nav {
-    padding: 10px 28px;
+    padding: 9px 20px;
     letter-spacing: 2px;
   }
 }
 
 @media (min-width: 1024px) {
   .btn-nav {
-    padding: 12px 45px;
+    padding: 10px 32px;
     letter-spacing: 3px;
     font-size: 1.2rem;
   }
