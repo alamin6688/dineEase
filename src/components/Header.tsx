@@ -76,7 +76,7 @@ export default function Header() {
                 width={180}
                 height={112}
                 priority
-                className="h-[46px] sm:h-[60px] w-auto object-contain"
+                className="h-[46px] sm:h-[60px] w-auto object-contain pl-4 md:pl-2"
               />
             </Link>
           </div>
@@ -84,16 +84,21 @@ export default function Header() {
           {/* Desktop Nav Links */}
           <nav className="hidden xl:block flex-shrink-0">
             <ul className="flex items-center gap-[20px] xl:gap-[24px] 2xl:gap-[30px]">
-              {navLinks.map((link, idx) => (
-                <li key={idx}>
-                  <Link
-                    href={link.href}
-                    className={`hover-underline text-label-2 uppercase font-bold tracking-ls-1 leading-none py-[10px] block transition-colors ${linkColor}`}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+              {navLinks.map((link, idx) => {
+                const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
+                return (
+                  <li key={idx}>
+                    <Link
+                      href={link.href}
+                      className={`hover-underline text-label-2 uppercase font-bold tracking-ls-1 leading-none py-[10px] block transition-colors ${
+                        isActive ? 'text-gold-crayola active-link' : linkColor
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                )
+              })}
             </ul>
           </nav>
 
@@ -117,7 +122,7 @@ export default function Header() {
                 )}
               </button>
             ) : (
-              <Btn href="/contact" className="hidden sm:block btn-nav">
+              <Btn href="/reserve" className="hidden sm:block btn-nav">
                 Book A Table
               </Btn>
             )}
@@ -165,21 +170,34 @@ export default function Header() {
         {/* Drawer Menu List */}
         <nav className="border-b border-white-alpha-20 mb-[60px]">
           <ul>
-            {navLinks.map((link, idx) => (
-              <li key={idx} className="border-t border-white-alpha-20">
-                <Link
-                  href={link.href}
-                  onClick={() => setNavOpen(false)}
-                  className="group relative text-label-2 uppercase py-[15px] block font-bold tracking-ls-1"
-                >
-                  {/* Left Diamond Dot Indicator */}
-                  <Separator className="absolute top-1/2 left-0 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <span className="span inline-block transition-transform duration-1 group-hover:translate-x-[20px] group-hover:text-gold-crayola">
-                    {link.label}
-                  </span>
-                </Link>
-              </li>
-            ))}
+            {navLinks.map((link, idx) => {
+              const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
+              return (
+                <li key={idx} className="border-t border-white-alpha-20">
+                  <Link
+                    href={link.href}
+                    onClick={() => setNavOpen(false)}
+                    className="group relative text-label-2 uppercase py-[15px] block font-bold tracking-ls-1"
+                  >
+                    {/* Left Diamond Dot Indicator */}
+                    <Separator
+                      className={`absolute top-1/2 left-0 -translate-y-1/2 transition-opacity ${
+                        isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                      }`}
+                    />
+                    <span
+                      className={`span inline-block transition-all duration-1 ${
+                        isActive
+                          ? 'translate-x-[20px] text-gold-crayola'
+                          : 'group-hover:translate-x-[20px] group-hover:text-gold-crayola'
+                      }`}
+                    >
+                      {link.label}
+                    </span>
+                  </Link>
+                </li>
+              )
+            })}
           </ul>
         </nav>
 

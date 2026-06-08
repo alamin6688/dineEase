@@ -95,6 +95,11 @@ img {
   opacity: 1;
 }
 
+.hover-underline.active-link::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
 .btn {
   position: relative;
   color: hsl(38, 61%, 73%);
