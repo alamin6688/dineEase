@@ -23,7 +23,7 @@ import { useCart } from '@/context/CartContext'
 interface MenuItem {
   id: string
   name: string
-  category: 'pizza' | 'pasta' | 'starters' | 'drinks' | 'mains' | 'vegan-starters' | 'specials' | 'kebabs' | 'seafood'
+  category: 'pizza' | 'pasta' | 'starters' | 'drinks' | 'mains' | 'vegan-starters' | 'specials' | 'kebabs' | 'seafood' | 'lunch' | 'dinner'
   price: number
   image: string
   rating: number
@@ -294,6 +294,112 @@ const menuDatabase: MenuItem[] = [
     badge: 'HOT',
     desc: 'A moderately spicy curry cooked with sliced capsicums, onions, tomatoes, and fresh green chillies.',
     deliveryTime: '25 - 35 mins'
+  },
+  // Lunch Specialties
+  {
+    id: 'lunch-thali',
+    name: 'Royal Lunch Thali',
+    category: 'lunch',
+    price: 15.50,
+    image: '/assets/images/royal_lunch_thali.png',
+    rating: 4.9,
+    reviewsCount: 320,
+    badge: 'CHEF SPECIAL',
+    likesCount: 48,
+    desc: 'A majestic feast featuring basmati rice, dal makhani, butter paneer, dry aloo gobhi, butter naan, raita, and sweet gulab jamun.',
+    deliveryTime: '15 - 25 mins'
+  },
+  {
+    id: 'chicken-biryani',
+    name: 'Dum Pukht Chicken Biryani',
+    category: 'lunch',
+    price: 14.00,
+    image: '/assets/images/chicken_biryani.png',
+    rating: 4.8,
+    reviewsCount: 245,
+    badge: 'POPULAR',
+    likesCount: 36,
+    desc: 'Aromatic long-grain basmati rice cooked on slow dum heat with marinated tender chicken pieces, caramelized onions, fresh mint, and saffron.',
+    deliveryTime: '20 - 30 mins'
+  },
+  {
+    id: 'chana-bhature',
+    name: 'Delhi Style Chana Bhature',
+    category: 'lunch',
+    price: 11.50,
+    image: '/assets/images/chana_bhature.png',
+    rating: 4.7,
+    reviewsCount: 180,
+    badge: null,
+    likesCount: 18,
+    desc: 'Spicy chickpeas curry cooked in Punjabi style, served with two large, fluffy fried sourdough flatbreads (bhature), pickles, and onions.',
+    deliveryTime: '10 - 15 mins'
+  },
+  {
+    id: 'paneer-wrap',
+    name: 'Tandoori Paneer Tikka Wrap',
+    category: 'lunch',
+    price: 9.50,
+    image: '/assets/images/paneer_wrap.png',
+    rating: 4.6,
+    reviewsCount: 110,
+    badge: 'NEW',
+    likesCount: 12,
+    desc: 'Charcoal-grilled spiced cottage cheese wrap stuffed with fresh bell peppers, onions, shredded lettuce, and cooling mint-coriander mayonnaise.',
+    deliveryTime: '10 - 15 mins'
+  },
+  // Dinner Specialties
+  {
+    id: 'tandoori-chicken-half',
+    name: 'Clay Oven Tandoori Chicken',
+    category: 'dinner',
+    price: 18.00,
+    image: '/assets/images/tandoori_chicken.png',
+    rating: 4.9,
+    reviewsCount: 410,
+    badge: 'SIGNATURE',
+    likesCount: 64,
+    desc: 'Juicy half chicken marinated overnight in fresh yogurt, ginger-garlic paste, and secret tandoori spices, roasted to perfection in clay oven charcoal.',
+    deliveryTime: '25 - 35 mins'
+  },
+  {
+    id: 'lamb-rogan-josh',
+    name: 'Kashmiri Lamb Rogan Josh',
+    category: 'dinner',
+    price: 19.50,
+    image: '/assets/images/lamb_rogan_josh.png',
+    rating: 4.9,
+    reviewsCount: 285,
+    badge: 'BEST SELLER',
+    likesCount: 52,
+    desc: 'Tender lamb shoulder chunks slow-cooked in a rich, aromatic gravy flavored with Kashmiri red chillies, fennel seeds, ginger, and saffron.',
+    deliveryTime: '25 - 35 mins'
+  },
+  {
+    id: 'dal-makhani-dinner',
+    name: 'Slow Cooked Dal Makhani',
+    category: 'dinner',
+    price: 13.50,
+    image: '/assets/images/dal_makhani.png',
+    rating: 4.8,
+    reviewsCount: 340,
+    badge: 'VEGETARIAN',
+    likesCount: 29,
+    desc: 'Black lentils and kidney beans slow-simmered for 24 hours with tomato puree, ghee, and traditional spices, finished with fresh churning butter and cream.',
+    deliveryTime: '15 - 25 mins'
+  },
+  {
+    id: 'seafood-platter',
+    name: 'Coastal Seafood Platter',
+    category: 'dinner',
+    price: 26.00,
+    image: '/assets/images/seafood_platter.png',
+    rating: 5.0,
+    reviewsCount: 165,
+    badge: 'PREMIUM',
+    likesCount: 42,
+    desc: 'An indulgent selection of grilled sea bass fillet, tandoori king prawns, and crispy calamari rings, served with wild garlic naan and mint chutney.',
+    deliveryTime: '30 - 40 mins'
   }
 ]
 
@@ -652,6 +758,168 @@ export default function MenuCatalogPage() {
                 </div>
               )}
             </div>
+
+            {/* 5. Lunch Specialties Section */}
+            {searchQuery.trim() === '' && (
+              <motion.div
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
+                className="mt-[80px] pt-[60px] border-t border-[hsla(0,0%,0%,0.06)]"
+              >
+                <div className="flex flex-col border-b border-[hsla(0,0%,0%,0.06)] pb-[12px] mb-[35px]">
+                  <span className="text-gold-crayola uppercase text-[1.1rem] font-bold tracking-ls-3 block mb-[4px]">
+                    Mid-Day Feast
+                  </span>
+                  <h3 className="font-forum text-headline-2 uppercase text-smoky-black-1 tracking-ls-1 font-bold">
+                    Lunch Specialties
+                  </h3>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[25px]">
+                  {menuDatabase
+                    .filter(item => item.category === 'lunch')
+                    .map(item => (
+                      <div
+                        key={item.id}
+                        onClick={() => setSelectedItemId(item.id)}
+                        className="bg-white border border-[hsla(0,0%,0%,0.06)] rounded-24 p-[16px] pb-[20px] shadow-[0_6px_25px_rgba(0,0%,0%,0.01)] hover:shadow-md transition-all cursor-pointer flex flex-col group relative"
+                      >
+                        {/* Image */}
+                        <div className="relative w-full aspect-square rounded-2xl overflow-hidden mb-[16px] bg-[#FAF9F6]">
+                          <Image
+                            src={item.image}
+                            alt={item.name}
+                            fill
+                            sizes="(max-width: 768px) 100vw, 250px"
+                            className="object-cover transition-transform duration-700 group-hover:scale-105"
+                          />
+                          {item.likesCount !== undefined && (
+                            <div className="absolute top-3 right-3 bg-white/95 text-smoky-black-1 text-[1.1rem] font-bold px-[8px] py-[4px] rounded-full flex items-center gap-[4px] shadow-sm">
+                              <IoHeartOutline className="text-red-500" />
+                              <span>{item.likesCount}</span>
+                            </div>
+                          )}
+                          {item.badge && (
+                            <span className="absolute top-3 left-3 bg-smoky-black-1 text-gold-crayola text-[1rem] font-bold uppercase tracking-wider px-[6px] py-[3px] rounded">
+                              {item.badge}
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Content details */}
+                        <div className="flex-1 flex flex-col justify-between">
+                          <div className="mb-[15px]">
+                            <h4 className="font-forum text-title-3 font-bold uppercase tracking-ls-1 leading-snug group-hover:text-gold-crayola transition-colors">
+                              {item.name}
+                            </h4>
+                            <p className="text-[1.3rem] text-davys-grey leading-relaxed mt-[8px] line-clamp-2">
+                              {item.desc}
+                            </p>
+                          </div>
+
+                          {/* Price & Add Quick button row */}
+                          <div className="flex justify-between items-center pt-[10px] border-t border-[hsla(0,0%,0%,0.04)]">
+                            <span className="font-mono text-smoky-black-1 font-bold text-[1.6rem]">
+                              ${item.price.toFixed(2)}
+                            </span>
+                            <button
+                              type="button"
+                              onClick={(e) => handleQuickAdd(e, item)}
+                              className="w-[32px] h-[32px] bg-smoky-black-1 text-white hover:bg-gold-crayola hover:text-smoky-black-1 rounded-md flex items-center justify-center transition-all cursor-pointer"
+                              aria-label="Add to cart quick"
+                            >
+                              <IoAddOutline size={18} />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                </div>
+              </motion.div>
+            )}
+
+            {/* 6. Dinner Specialties Section */}
+            {searchQuery.trim() === '' && (
+              <motion.div
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
+                className="mt-[80px] pt-[60px] border-t border-[hsla(0,0%,0%,0.06)]"
+              >
+                <div className="flex flex-col border-b border-[hsla(0,0%,0%,0.06)] pb-[12px] mb-[35px]">
+                  <span className="text-gold-crayola uppercase text-[1.1rem] font-bold tracking-ls-3 block mb-[4px]">
+                    Evening Delights
+                  </span>
+                  <h3 className="font-forum text-headline-2 uppercase text-smoky-black-1 tracking-ls-1 font-bold">
+                    Dinner Specialties
+                  </h3>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[25px]">
+                  {menuDatabase
+                    .filter(item => item.category === 'dinner')
+                    .map(item => (
+                      <div
+                        key={item.id}
+                        onClick={() => setSelectedItemId(item.id)}
+                        className="bg-white border border-[hsla(0,0%,0%,0.06)] rounded-24 p-[16px] pb-[20px] shadow-[0_6px_25px_rgba(0,0%,0%,0.01)] hover:shadow-md transition-all cursor-pointer flex flex-col group relative"
+                      >
+                        {/* Image */}
+                        <div className="relative w-full aspect-square rounded-2xl overflow-hidden mb-[16px] bg-[#FAF9F6]">
+                          <Image
+                            src={item.image}
+                            alt={item.name}
+                            fill
+                            sizes="(max-width: 768px) 100vw, 250px"
+                            className="object-cover transition-transform duration-700 group-hover:scale-105"
+                          />
+                          {item.likesCount !== undefined && (
+                            <div className="absolute top-3 right-3 bg-white/95 text-smoky-black-1 text-[1.1rem] font-bold px-[8px] py-[4px] rounded-full flex items-center gap-[4px] shadow-sm">
+                              <IoHeartOutline className="text-red-500" />
+                              <span>{item.likesCount}</span>
+                            </div>
+                          )}
+                          {item.badge && (
+                            <span className="absolute top-3 left-3 bg-smoky-black-1 text-gold-crayola text-[1rem] font-bold uppercase tracking-wider px-[6px] py-[3px] rounded">
+                              {item.badge}
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Content details */}
+                        <div className="flex-1 flex flex-col justify-between">
+                          <div className="mb-[15px]">
+                            <h4 className="font-forum text-title-3 font-bold uppercase tracking-ls-1 leading-snug group-hover:text-gold-crayola transition-colors">
+                              {item.name}
+                            </h4>
+                            <p className="text-[1.3rem] text-davys-grey leading-relaxed mt-[8px] line-clamp-2">
+                              {item.desc}
+                            </p>
+                          </div>
+
+                          {/* Price & Add Quick button row */}
+                          <div className="flex justify-between items-center pt-[10px] border-t border-[hsla(0,0%,0%,0.04)]">
+                            <span className="font-mono text-smoky-black-1 font-bold text-[1.6rem]">
+                              ${item.price.toFixed(2)}
+                            </span>
+                            <button
+                              type="button"
+                              onClick={(e) => handleQuickAdd(e, item)}
+                              className="w-[32px] h-[32px] bg-smoky-black-1 text-white hover:bg-gold-crayola hover:text-smoky-black-1 rounded-md flex items-center justify-center transition-all cursor-pointer"
+                              aria-label="Add to cart quick"
+                            >
+                              <IoAddOutline size={18} />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                </div>
+              </motion.div>
+            )}
           </div>
 
           {/* ───────────────── MENU DYNAMIC DETAILS VIEW (MODAL OVERLAY) ───────────────── */}
