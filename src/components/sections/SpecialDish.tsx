@@ -51,7 +51,7 @@ export default function SpecialDish() {
 
           {/* Section Headers */}
           <motion.div variants={fadeInUp}>
-            <SectionSubtitle align="left" className="mb-[15px] lg:items-start text-center lg:text-left">
+            <SectionSubtitle align="responsive" className="mb-[15px]">
               Special Dish
             </SectionSubtitle>
           </motion.div>

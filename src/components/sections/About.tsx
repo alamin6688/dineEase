@@ -43,7 +43,7 @@ export default function About() {
           className="flex flex-col items-center lg:items-start text-center lg:text-left"
         >
           <motion.div variants={fadeInUp}>
-            <SectionSubtitle align="left" className="mb-[15px]">Our Story</SectionSubtitle>
+            <SectionSubtitle align="responsive" className="mb-[15px]">Our Story</SectionSubtitle>
           </motion.div>
           
           <motion.h2 

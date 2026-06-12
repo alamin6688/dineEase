@@ -43,10 +43,10 @@ export default function Preloader() {
         }`}
       >
         {/* Spinner */}
-        <div className="w-[112px] h-[112px] rounded-full border-[3px] border-white border-t-smoky-black-3 animate-rotate-fast mb-[45px]" />
+        <div className="w-[70px] h-[70px] md:w-[112px] md:h-[112px] rounded-full border-[3px] border-white border-t-smoky-black-3 animate-rotate-fast mb-[30px] md:mb-[45px]" />
         
         {/* Animated Text */}
-        <h2 className="text-[clamp(2.5rem,2rem+3vw,5.5rem)] font-bold uppercase tracking-[16px] pl-[16px] text-transparent bg-loading-gradient bg-[length:500%] bg-clip-text [-webkit-text-stroke:0.5px_hsla(0,3%,7%,1)] animate-loading-text leading-none font-dmSans">
+        <h2 className="text-[clamp(2rem,1.5rem+3vw,5.5rem)] font-bold uppercase tracking-[6px] sm:tracking-[12px] md:tracking-[16px] pl-[6px] sm:pl-[12px] md:pl-[16px] text-transparent bg-loading-gradient bg-[length:500%] bg-clip-text [-webkit-text-stroke:0.5px_hsla(0,3%,7%,1)] animate-loading-text leading-none font-dmSans">
           Spice Valley
         </h2>
       </div>

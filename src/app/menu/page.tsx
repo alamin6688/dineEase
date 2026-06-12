@@ -12,7 +12,6 @@ import {
   IoAddOutline, 
   IoRemoveOutline, 
   IoHeartOutline, 
-  IoCartOutline, 
   IoArrowBackOutline, 
   IoStar,
   IoCloseOutline,
