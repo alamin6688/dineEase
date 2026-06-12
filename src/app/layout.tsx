@@ -22,7 +22,10 @@ export const metadata: Metadata = {
   title: 'Spice Valley | Restaurant Landing Page',
   description: 'Spice Valley - Delicious Story & Flavors for Royalty. Enjoy fresh environment, hygienic food, and recipes cooked by skilled chefs.',
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/assets/images/logo.png', type: 'image/png' },
+    ],
   },
 }
 
