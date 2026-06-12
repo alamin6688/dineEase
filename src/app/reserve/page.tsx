@@ -157,6 +157,14 @@ export default function ReservePage() {
     setStep(targetStep)
   }
 
+  // Check if we can navigate to a target step
+  const canNavigateToStep = (targetStep: 1 | 2 | 3) => {
+    if (targetStep === 1) return true
+    if (targetStep === 2) return !!(selectedDate && selectedTime)
+    if (targetStep === 3) return !!(selectedDate && selectedTime && firstName && lastName && email && phone)
+    return false
+  }
+
   // Guest buttons selection
   const handleGuestSelect = (num: number) => {
     setSelectedGuests(num)
@@ -511,7 +519,15 @@ export default function ReservePage() {
           {/* 2. PROGRESS TABS HEADER */}
           <div className="max-w-[700px] mx-auto mb-[50px] relative border-b border-[hsla(0,0%,0%,0.06)] pb-[12px] flex justify-between items-center text-[1.2rem] font-bold uppercase tracking-ls-1">
             {/* Step 1 Tab Indicator */}
-            <div className="flex flex-col items-center flex-1">
+            <button
+              type="button"
+              onClick={() => canNavigateToStep(1) && navigateToStep(1)}
+              className={`flex flex-col items-center flex-1 transition-all bg-transparent border-none p-0 focus:outline-none ${
+                canNavigateToStep(1)
+                  ? 'cursor-pointer hover:text-gold-crayola'
+                  : 'cursor-not-allowed opacity-50'
+              }`}
+            >
               {step > 1 ? (
                 <div className="w-[28px] h-[28px] bg-gold-crayola rounded-full flex items-center justify-center text-white mb-2 shadow-sm">
                   <IoCheckmarkCircleOutline size={18} />
@@ -522,12 +538,21 @@ export default function ReservePage() {
                 </span>
               )}
               {step > 1 && <span className="text-gold-crayola text-[1rem]">01 Table</span>}
-            </div>
+            </button>
 
             <div className="w-[60px] h-[1px] bg-[hsla(0,0%,0%,0.08)] mb-2" />
 
             {/* Step 2 Tab Indicator */}
-            <div className="flex flex-col items-center flex-1">
+            <button
+              type="button"
+              disabled={!canNavigateToStep(2)}
+              onClick={() => canNavigateToStep(2) && navigateToStep(2)}
+              className={`flex flex-col items-center flex-1 transition-all bg-transparent border-none p-0 focus:outline-none ${
+                canNavigateToStep(2)
+                  ? 'cursor-pointer hover:text-gold-crayola'
+                  : 'cursor-not-allowed opacity-50'
+              }`}
+            >
               {step > 2 ? (
                 <div className="w-[28px] h-[28px] bg-gold-crayola rounded-full flex items-center justify-center text-white mb-2 shadow-sm">
                   <IoCheckmarkCircleOutline size={18} />
@@ -538,16 +563,25 @@ export default function ReservePage() {
                 </span>
               )}
               {step > 2 && <span className="text-gold-crayola text-[1rem]">02 Details</span>}
-            </div>
+            </button>
 
             <div className="w-[60px] h-[1px] bg-[hsla(0,0%,0%,0.08)] mb-2" />
 
             {/* Step 3 Tab Indicator */}
-            <div className="flex flex-col items-center flex-1">
+            <button
+              type="button"
+              disabled={!canNavigateToStep(3)}
+              onClick={() => canNavigateToStep(3) && navigateToStep(3)}
+              className={`flex flex-col items-center flex-1 transition-all bg-transparent border-none p-0 focus:outline-none ${
+                canNavigateToStep(3)
+                  ? 'cursor-pointer hover:text-gold-crayola'
+                  : 'cursor-not-allowed opacity-50'
+              }`}
+            >
               <span className={`pb-[6px] ${step === 3 ? 'text-gold-crayola border-b-2 border-gold-crayola' : 'text-quick-silver'}`}>
                 03 Review
               </span>
-            </div>
+            </button>
           </div>
 
           {/* 3. MULTI-STEP TAB FORM CONTENT */}
@@ -879,7 +913,7 @@ export default function ReservePage() {
                       <button
                         type="button"
                         onClick={() => navigateToStep(1)}
-                        className="btn btn-secondary flex items-center justify-center gap-[10px] font-bold border border-gray-300 py-[12px] px-[28px] rounded cursor-pointer"
+                        className="btn btn-secondary flex items-center justify-center gap-[10px] font-bold border border-gray-300 py-[12px] px-[28px] rounded cursor-pointer hover:text-gold-crayola"
                       >
                         <IoArrowBackOutline size={16} />
                         <span>Back to Selection</span>
@@ -989,14 +1023,24 @@ export default function ReservePage() {
                         </div>
                       </div>
 
-                      <button
-                        type="button"
-                        onClick={handleConfirmReservation}
-                        className="bg-[#7d6329] hover:bg-smoky-black-1 text-white hover:text-gold-crayola font-bold uppercase tracking-ls-3 text-label-2 py-[16px] w-full flex items-center justify-center gap-[10px] transition-all shadow-md cursor-pointer"
-                      >
-                        <span>CONFIRM RESERVATION</span>
-                        <IoArrowForwardOutline size={16} />
-                      </button>
+                      <div className="flex flex-col gap-[12px] w-full">
+                        <button
+                          type="button"
+                          onClick={handleConfirmReservation}
+                          className="bg-[#7d6329] hover:bg-smoky-black-1 text-white hover:text-gold-crayola font-bold uppercase tracking-ls-3 text-label-2 py-[16px] w-full flex items-center justify-center gap-[10px] transition-all shadow-md cursor-pointer"
+                        >
+                          <span>CONFIRM RESERVATION</span>
+                          <IoArrowForwardOutline size={16} />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => navigateToStep(2)}
+                          className="bg-white border border-[hsla(0,0%,0%,0.15)] hover:border-gold-crayola text-smoky-black-1 hover:text-gold-crayola font-bold uppercase tracking-ls-3 text-label-2 py-[16px] w-full flex items-center justify-center gap-[10px] transition-all cursor-pointer"
+                        >
+                          <IoArrowBackOutline size={16} />
+                          <span>Back to Details</span>
+                        </button>
+                      </div>
                     </div>
                   </div>
 
@@ -1016,15 +1060,6 @@ export default function ReservePage() {
                   <p className="text-[1.2rem] text-davys-grey text-center leading-relaxed font-medium mt-[10px]">
                     By confirming, you agree to our 24-hour cancellation policy. A temporary hold may be placed on your card for no-shows.
                   </p>
-
-                  {/* Modify details shortcut */}
-                  <button
-                    type="button"
-                    onClick={() => navigateToStep(2)}
-                    className="text-[1.2rem] text-gold-crayola hover:text-smoky-black-1 font-bold uppercase tracking-ls-2 transition-all self-center mt-[10px] hover:underline"
-                  >
-                    MODIFY DETAILS
-                  </button>
                 </motion.div>
               )}
             </AnimatePresence>
