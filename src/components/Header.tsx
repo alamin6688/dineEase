@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { IoCloseOutline, IoCartOutline } from 'react-icons/io5'
+import { IoCloseOutline, IoReceiptOutline } from 'react-icons/io5'
 import Btn from './Btn'
 import Separator from './Separator'
 import { useCart } from '@/context/CartContext'
@@ -87,7 +87,7 @@ export default function Header() {
               {navLinks.map((link, idx) => {
                 const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
                 return (
-                  <li key={idx}>
+                  <li key={isActive ? 'active-' + idx : idx}>
                     <Link
                       href={link.href}
                       className={`hover-underline text-label-2 uppercase font-bold tracking-ls-1 leading-none py-[10px] block transition-colors ${
@@ -112,9 +112,9 @@ export default function Header() {
                     ? 'bg-transparent border-[hsla(0,0%,0%,0.1)] hover:border-gold-crayola/30 hover:bg-gold-crayola/10' 
                     : 'bg-white-alpha-10 border-white-alpha-20 hover:border-gold-crayola/30 hover:bg-gold-crayola/20'
                 }`}
-                aria-label="Open cart"
+                aria-label="Open order list"
               >
-                <IoCartOutline size={22} className={isContactPage ? 'text-smoky-black-1' : 'text-white'} />
+                <IoReceiptOutline size={22} className={isContactPage ? 'text-smoky-black-1' : 'text-white'} />
                 {cartCount > 0 && (
                   <span className="absolute -top-1 -right-1 w-[20px] h-[20px] bg-gold-crayola text-smoky-black-1 text-[1.1rem] font-bold rounded-full flex items-center justify-center animate-pulse">
                     {cartCount}

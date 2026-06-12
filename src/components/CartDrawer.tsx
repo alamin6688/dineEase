@@ -92,7 +92,10 @@ export default function CartDrawer() {
             </div>
 
             {/* Scrollable Cart Items List */}
-            <div className="flex-1 overflow-y-auto py-[20px] pr-[4px] flex flex-col gap-[16px]">
+            <div
+              data-lenis-prevent
+              className="flex-1 overflow-y-auto py-[20px] pr-[4px] flex flex-col gap-[16px]"
+            >
               
               {/* Active Deliveries inside Cart Drawer */}
               {isMounted && orders.length > 0 && (
@@ -178,7 +181,7 @@ export default function CartDrawer() {
                           </span>
                         </div>
                         <span className="text-[1.1rem] font-bold text-gold-crayola uppercase bg-smoky-black-1 px-[6px] py-[2px] rounded inline-block mt-[4px]">
-                          Size: {item.size}
+                          Options: {item.size}
                         </span>
                       </div>
 

@@ -15,7 +15,8 @@ import {
   IoCartOutline, 
   IoArrowBackOutline, 
   IoStar,
-  IoCloseOutline 
+  IoCloseOutline,
+  IoReceiptOutline
 } from 'react-icons/io5'
 import { useCart } from '@/context/CartContext'
 
@@ -422,7 +423,12 @@ export default function MenuCatalogPage() {
 
   // Details screen local state
   const [detailQty, setDetailQty] = useState(1)
-  const [detailSize, setDetailSize] = useState<'S' | 'M' | 'L' | 'XL'>('L')
+  const [detailSpice, setDetailSpice] = useState<'Mild' | 'Medium' | 'Hot' | 'Extra Hot'>('Medium')
+  const [addOns, setAddOns] = useState([
+    { id: 'extra-sauce', name: 'Extra Sauce/Chutney', price: 1.50, selected: false },
+    { id: 'extra-mayo', name: 'Extra Mayo', price: 1.00, selected: false },
+    { id: 'soft-drink', name: 'Cold Soft Drink', price: 2.50, selected: false },
+  ])
 
   // Find active selected detailed item
   const selectedItem = menuDatabase.find(i => i.id === selectedItemId)
@@ -430,7 +436,12 @@ export default function MenuCatalogPage() {
   // Reset details inputs when page changes
   useEffect(() => {
     setDetailQty(1)
-    setDetailSize('L')
+    setDetailSpice('Medium')
+    setAddOns([
+      { id: 'extra-sauce', name: 'Extra Sauce/Chutney', price: 1.50, selected: false },
+      { id: 'extra-mayo', name: 'Extra Mayo', price: 1.00, selected: false },
+      { id: 'soft-drink', name: 'Cold Soft Drink', price: 2.50, selected: false },
+    ])
   }, [selectedItemId])
 
   // Filter items in the top popular section
@@ -473,12 +484,26 @@ export default function MenuCatalogPage() {
     addToCart({ id: item.id, name: item.name, price: item.price, image: item.image }, 1, 'L')
   }
 
+  // Calculate final single-item price with selected add-ons
+  const addOnsTotal = addOns.filter(a => a.selected).reduce((sum, a) => sum + a.price, 0)
+  const singleItemTotalPrice = selectedItem ? selectedItem.price + addOnsTotal : 0
+  const finalTotalPrice = singleItemTotalPrice * detailQty
+
   const handleDetailsAdd = () => {
     if (!selectedItem) return
+    const selectedAddOnsText = addOns
+      .filter(a => a.selected)
+      .map(a => a.name)
+      .join(', ')
+    
+    const optionCombo = selectedAddOnsText 
+      ? `${detailSpice} (${selectedAddOnsText})`
+      : detailSpice
+
     addToCart(
-      { id: selectedItem.id, name: selectedItem.name, price: selectedItem.price, image: selectedItem.image },
+      { id: selectedItem.id, name: selectedItem.name, price: singleItemTotalPrice, image: selectedItem.image },
       detailQty,
-      detailSize
+      optionCombo
     )
   }
 
@@ -941,10 +966,10 @@ export default function MenuCatalogPage() {
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95, y: 20 }}
                   transition={{ type: 'spring', damping: 25, stiffness: 220 }}
-                  className="relative w-full max-w-[950px] bg-white border border-[hsla(0,0%,0%,0.06)] rounded-24 shadow-[0_20px_50px_rgba(0,0%,0%,0.15)] overflow-hidden z-10 flex flex-col lg:flex-row items-stretch max-h-[90vh] lg:max-h-[85vh] text-smoky-black-1 font-dmSans"
+                  className="relative w-full max-w-[950px] bg-white border border-[hsla(0,0%,0%,0.06)] rounded-24 shadow-[0_20px_50px_rgba(0,0%,0%,0.15)] overflow-hidden z-10 flex flex-col md:flex-row items-stretch h-[90vh] md:h-[650px] text-smoky-black-1 font-dmSans"
                 >
                   {/* Left Column: Image with back button */}
-                  <div className="relative w-full lg:w-[48%] min-h-[200px] sm:min-h-[260px] lg:min-h-full shrink-0 bg-[#FAF9F6]">
+                  <div className="relative w-full md:w-[46%] h-[200px] sm:h-[260px] md:h-auto shrink-0 bg-[#FAF9F6]">
                     <Image
                       src={selectedItem.image}
                       alt={selectedItem.name}
@@ -966,88 +991,134 @@ export default function MenuCatalogPage() {
                   </div>
 
                   {/* Right Column: Menu details, options, quantity and add to cart */}
-                  <div className="flex-1 flex flex-col justify-between p-[24px] sm:p-[32px] overflow-y-auto min-h-[300px] lg:min-h-full relative">
+                  <div className="flex-1 flex flex-col justify-between p-[20px] md:p-[32px] min-h-0 relative">
                     {/* Top Right Close Icon Button */}
                     <button
                       type="button"
                       onClick={() => setSelectedItemId(null)}
-                      className="absolute top-4 right-4 text-quick-silver hover:text-smoky-black-1 p-[8px] bg-[#FAF9F6] border border-[hsla(0,0%,0%,0.04)] rounded-full transition-all cursor-pointer hidden lg:block"
+                      className="absolute top-4 right-4 text-quick-silver hover:text-smoky-black-1 p-[8px] bg-[#FAF9F6] border border-[hsla(0,0%,0%,0.04)] rounded-full transition-all cursor-pointer hidden lg:block z-10"
                       aria-label="Close details"
                     >
                       <IoCloseOutline size={20} />
                     </button>
 
-                    <div className="flex flex-col gap-[16px]">
-                      <div>
-                        {/* Title & Qty Row */}
-                        <div className="flex justify-between items-start gap-[20px] mb-[8px]">
-                          <h2 className="font-forum text-headline-2 uppercase tracking-ls-1 font-bold text-smoky-black-1 leading-tight max-w-[75%]">
+                    {/* Scrollable Content Area */}
+                    <div
+                      data-lenis-prevent
+                      className="flex-1 overflow-y-auto pr-1 md:pr-2 min-h-0 mb-[16px] max-h-[280px] sm:max-h-[360px] md:max-h-[390px]"
+                    >
+                      <div className="flex flex-col gap-[16px]">
+                        <div>
+                          {/* Title */}
+                          <h2 className="font-forum text-headline-2 uppercase tracking-ls-1 font-bold text-smoky-black-1 leading-tight mb-[8px] pr-[30px]">
                             {selectedItem.name}
                           </h2>
                           
-                          {/* Quantity Counter */}
-                          <div className="flex items-center border border-[hsla(0,0%,0%,0.1)] rounded-md overflow-hidden bg-[#FAF9F6] shrink-0">
-                            <button
-                              type="button"
-                              onClick={() => setDetailQty(prev => Math.max(1, prev - 1))}
-                              className="p-[6px] hover:bg-gold-crayola/15 text-smoky-black-1 transition-all"
-                              aria-label="Decrease quantity"
-                            >
-                              <IoRemoveOutline size={14} />
-                            </button>
-                            <span className="px-[12px] font-bold text-[1.3rem] font-mono select-none">
-                              {detailQty}
-                            </span>
-                            <button
-                              type="button"
-                              onClick={() => setDetailQty(prev => prev + 1)}
-                              className="p-[6px] hover:bg-gold-crayola/15 text-smoky-black-1 transition-all"
-                              aria-label="Increase quantity"
-                            >
-                              <IoAddOutline size={14} />
-                            </button>
+                          {/* Rating star review count */}
+                          <div className="flex items-center gap-[6px] text-yellow-500 text-[1.2rem] font-bold mb-[14px]">
+                            <IoStar />
+                            <span className="text-smoky-black-1 font-extrabold">{selectedItem.rating}</span>
+                            <span className="text-quick-silver font-medium">({selectedItem.reviewsCount.toLocaleString()} reviews)</span>
+                          </div>
+
+                          {/* Description */}
+                          <p className="text-[1.3rem] text-davys-grey leading-relaxed mb-[18px] pb-[14px] border-b border-[hsla(0,0%,0%,0.06)]">
+                            {selectedItem.desc}
+                          </p>
+                        </div>
+
+                        {/* Spice Level Selection */}
+                        <div className="mb-[16px]">
+                          <span className="block text-[1.1rem] font-bold uppercase tracking-ls-2 text-davys-grey mb-[8px]">
+                            Choose Spiciness Level
+                          </span>
+                          <div className="flex flex-wrap gap-[8px]">
+                            {(['Mild', 'Medium', 'Hot', 'Extra Hot'] as const).map(level => (
+                              <button
+                                key={level}
+                                type="button"
+                                onClick={() => setDetailSpice(level)}
+                                className={`px-[16px] py-[8px] rounded-lg font-bold text-[1.2rem] flex items-center justify-center transition-all ${
+                                  detailSpice === level
+                                    ? 'bg-gold-crayola text-smoky-black-1 shadow-md'
+                                    : 'bg-[#FAF9F6] border border-[hsla(0,0%,0%,0.06)] hover:border-gold-crayola/50 text-smoky-black-1'
+                                }`}
+                              >
+                                {level}
+                              </button>
+                            ))}
                           </div>
                         </div>
 
-                        {/* Rating star review count */}
-                        <div className="flex items-center gap-[6px] text-yellow-500 text-[1.2rem] font-bold mb-[18px]">
-                          <IoStar />
-                          <span className="text-smoky-black-1 font-extrabold">{selectedItem.rating}</span>
-                          <span className="text-quick-silver font-medium">({selectedItem.reviewsCount.toLocaleString()} reviews)</span>
-                        </div>
-
-                        {/* Description */}
-                        <p className="text-[1.3rem] text-davys-grey leading-relaxed mb-[20px] pb-[16px] border-b border-[hsla(0,0%,0%,0.06)]">
-                          {selectedItem.desc}
-                        </p>
-
-                        {/* Choose Size Selector */}
-                        <div>
-                          <span className="block text-[1.1rem] font-bold uppercase tracking-ls-2 text-davys-grey mb-[8px]">
-                            CHOOSE SIZE
+                        {/* Add-ons / Extras Selection */}
+                        <div className="border-t border-[hsla(0,0%,0%,0.06)] pt-[16px]">
+                          <span className="block text-[1.1rem] font-bold uppercase tracking-ls-2 text-davys-grey mb-[12px]">
+                            Add-ons & Extras
                           </span>
-                          <div className="flex gap-[8px]">
-                            {(['S', 'M', 'L', 'XL'] as const).map(size => (
-                              <button
-                                key={size}
-                                type="button"
-                                onClick={() => setDetailSize(size)}
-                                className={`w-[38px] h-[38px] rounded-lg font-bold text-[1.2rem] flex items-center justify-center transition-all ${
-                                  detailSize === size
-                                    ? 'bg-smoky-black-1 text-white shadow-md'
-                                    : 'bg-[#FAF9F6] border border-[hsla(0,0%,0%,0.06)] hover:border-gold-crayola/50'
-                                }`}
+                          <div className="flex flex-col gap-[10px]">
+                            {addOns.map(addon => (
+                              <label
+                                key={addon.id}
+                                className="flex items-center justify-between p-[12px] bg-[#FAF9F6] border border-[hsla(0,0%,0%,0.05)] rounded-xl cursor-pointer hover:border-gold-crayola/30 transition-all select-none"
                               >
-                                {size}
-                              </button>
+                                <div className="flex items-center gap-[10px]">
+                                  <input
+                                    type="checkbox"
+                                    checked={addon.selected}
+                                    onChange={() => {
+                                      setAddOns(prev =>
+                                        prev.map(a =>
+                                          a.id === addon.id ? { ...a, selected: !a.selected } : a
+                                        )
+                                      )
+                                    }}
+                                    className="w-[16px] h-[16px] accent-gold-crayola rounded"
+                                  />
+                                  <span className="text-[1.3rem] font-medium text-smoky-black-1">
+                                    {addon.name}
+                                  </span>
+                                </div>
+                                <span className="font-mono text-[1.2rem] font-bold text-gold-crayola">
+                                  +${addon.price.toFixed(2)}
+                                </span>
+                              </label>
                             ))}
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    {/* Bottom Checkout Action */}
-                    <div className="mt-[24px]">
+                    {/* Bottom Checkout Action & Quantity (Sticky Footer) */}
+                    <div className="pt-[16px] border-t border-[hsla(0,0%,0%,0.06)] bg-white flex flex-col gap-[12px] shrink-0">
+                      <div className="flex justify-between items-center gap-[20px]">
+                        <span className="text-[1.1rem] font-bold uppercase tracking-ls-2 text-davys-grey">
+                          Quantity
+                        </span>
+                        
+                        {/* Quantity Counter */}
+                        <div className="flex items-center border border-[hsla(0,0%,0%,0.1)] rounded-md overflow-hidden bg-[#FAF9F6] shrink-0">
+                          <button
+                            type="button"
+                            onClick={() => setDetailQty(prev => Math.max(1, prev - 1))}
+                            className="p-[6px] hover:bg-gold-crayola/15 text-smoky-black-1 transition-all"
+                            aria-label="Decrease quantity"
+                          >
+                            <IoRemoveOutline size={14} />
+                          </button>
+                          <span className="px-[12px] font-bold text-[1.3rem] font-mono select-none">
+                            {detailQty}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => setDetailQty(prev => prev + 1)}
+                            className="p-[6px] hover:bg-gold-crayola/15 text-smoky-black-1 transition-all"
+                            aria-label="Increase quantity"
+                          >
+                            <IoAddOutline size={14} />
+                          </button>
+                        </div>
+                      </div>
+
                       <button
                         type="button"
                         onClick={() => {
@@ -1057,15 +1128,15 @@ export default function MenuCatalogPage() {
                         className="bg-smoky-black-1 text-white hover:text-gold-crayola font-bold uppercase tracking-ls-3 text-label-2 py-[14px] px-[20px] w-full flex justify-between items-center transition-all shadow-md rounded-lg cursor-pointer group"
                       >
                         <div className="flex items-center gap-[10px]">
-                          <IoCartOutline size={18} />
-                          <span>Add to Cart</span>
+                          <IoReceiptOutline size={18} />
+                          <span>Add to Order List</span>
                         </div>
                         <span className="font-mono text-gold-crayola group-hover:text-white transition-colors">
-                          ${(selectedItem.price * detailQty).toFixed(2)}
+                          ${finalTotalPrice.toFixed(2)}
                         </span>
                       </button>
 
-                      <span className="block text-[1.1rem] text-quick-silver text-center mt-[10px] font-medium uppercase tracking-wider">
+                      <span className="block text-[1.1rem] text-quick-silver text-center font-medium uppercase tracking-wider">
                         Estimated Delivery: {selectedItem.deliveryTime}
                       </span>
                     </div>
