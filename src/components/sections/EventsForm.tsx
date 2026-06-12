@@ -15,6 +15,12 @@ import {
 import { fadeInUp, staggerContainer } from '@/utils/animations'
 import { toast } from 'react-hot-toast'
 
+const timeSlots = Array.from({ length: 48 }, (_, i) => {
+  const h = Math.floor(i / 2)
+  const m = i % 2 === 0 ? '00' : '30'
+  return `${String(h).padStart(2, '0')}:${m}`
+})
+
 export default function EventsForm() {
   const [form, setForm] = useState({
     eventDate: '', // Initialize empty to avoid Next.js hydration mismatch
@@ -50,14 +56,24 @@ export default function EventsForm() {
   const [exactGuests, setExactGuests] = useState('')
   
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const startTimeRef = useRef<HTMLDivElement>(null)
+  const endTimeRef = useRef<HTMLDivElement>(null)
+  const [isStartTimeOpen, setIsStartTimeOpen] = useState(false)
+  const [isEndTimeOpen, setIsEndTimeOpen] = useState(false)
 
   const guestRanges = ['0 - 10', '10 - 25', '25 - 50', '50 - 100', '100 - 150']
 
-  // Handle click outside to close guests dropdown
+  // Handle click outside to close guests and time dropdowns
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsGuestsOpen(false)
+      }
+      if (startTimeRef.current && !startTimeRef.current.contains(event.target as Node)) {
+        setIsStartTimeOpen(false)
+      }
+      if (endTimeRef.current && !endTimeRef.current.contains(event.target as Node)) {
+        setIsEndTimeOpen(false)
       }
     }
     document.addEventListener('mousedown', handleClickOutside)
@@ -335,67 +351,111 @@ export default function EventsForm() {
                     </div>
 
                     {/* Start Time */}
-                    <div className="relative mb-[10px]">
+                    <div className="relative mb-[10px]" ref={startTimeRef}>
                       <span className="block text-[1.2rem] font-bold uppercase tracking-ls-1 text-davys-grey mb-1">
                         Start Time
                       </span>
                       <div 
-                        onClick={(e) => {
-                          try {
-                            e.currentTarget.querySelector('input')?.showPicker();
-                          } catch {}
-                        }}
+                        onClick={() => setIsStartTimeOpen(!isStartTimeOpen)}
                         className="relative cursor-pointer"
                       >
-                        <div className="w-full border-b border-[hsla(0,0%,0%,0.2)] py-[12px] flex items-center justify-between text-body-2 text-smoky-black-1 pointer-events-none">
+                        <div className="w-full border-b border-[hsla(0,0%,0%,0.2)] py-[12px] flex items-center justify-between text-body-2 text-smoky-black-1 select-none">
                           <span className={form.startTime ? 'text-smoky-black-1' : 'text-quick-silver'}>
-                            {form.startTime ? formatTime(form.startTime) : '-:- -'}
+                            {form.startTime ? formatTime(form.startTime) : '--:--'}
                           </span>
                           <div className="flex items-center">
                             <IoTimeOutline className="text-[1.8rem] text-smoky-black-1" />
                           </div>
                         </div>
-                        <input
-                          type="time"
-                          name="startTime"
-                          value={form.startTime}
-                          onChange={handleChange}
-                          className="absolute inset-0 opacity-0 pointer-events-none w-full h-full"
-                          style={{ colorScheme: 'light' }}
-                        />
                       </div>
+
+                      {/* Custom dropdown */}
+                      <AnimatePresence>
+                        {isStartTimeOpen && (
+                          <motion.div 
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 10 }}
+                            transition={{ duration: 0.2 }}
+                            data-lenis-prevent
+                            className="absolute left-0 right-0 top-full mt-[8px] bg-white border border-[hsla(0,0%,0%,0.1)] shadow-[0_10px_30px_rgba(0,0%,0%,0.1)] rounded-xl z-50 p-[10px] max-h-[200px] overflow-y-auto"
+                          >
+                            <div className="flex flex-col gap-[2px]">
+                              {timeSlots.map((time) => (
+                                <button
+                                  key={time}
+                                  type="button"
+                                  onClick={() => {
+                                    setForm(prev => ({ ...prev, startTime: time }))
+                                    setIsStartTimeOpen(false)
+                                  }}
+                                  className={`w-full text-left text-body-2 px-[10px] py-[8px] rounded transition-colors ${
+                                    form.startTime === time 
+                                      ? 'bg-[#E4C590] text-black font-bold' 
+                                      : 'text-smoky-black-1 hover:bg-[hsla(38,61%,73%,0.15)]'
+                                  }`}
+                                >
+                                  {time}
+                                </button>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
 
                     {/* End Time */}
-                    <div className="relative mb-[10px]">
+                    <div className="relative mb-[10px]" ref={endTimeRef}>
                       <span className="block text-[1.2rem] font-bold uppercase tracking-ls-1 text-davys-grey mb-1">
                         End Time
                       </span>
                       <div 
-                        onClick={(e) => {
-                          try {
-                            e.currentTarget.querySelector('input')?.showPicker();
-                          } catch {}
-                        }}
+                        onClick={() => setIsEndTimeOpen(!isEndTimeOpen)}
                         className="relative cursor-pointer"
                       >
-                        <div className="w-full border-b border-[hsla(0,0%,0%,0.2)] py-[12px] flex items-center justify-between text-body-2 text-smoky-black-1 pointer-events-none">
+                        <div className="w-full border-b border-[hsla(0,0%,0%,0.2)] py-[12px] flex items-center justify-between text-body-2 text-smoky-black-1 select-none">
                           <span className={form.endTime ? 'text-smoky-black-1' : 'text-quick-silver'}>
-                            {form.endTime ? formatTime(form.endTime) : '-:- -'}
+                            {form.endTime ? formatTime(form.endTime) : '--:--'}
                           </span>
                           <div className="flex items-center">
                             <IoTimeOutline className="text-[1.8rem] text-smoky-black-1" />
                           </div>
                         </div>
-                        <input
-                          type="time"
-                          name="endTime"
-                          value={form.endTime}
-                          onChange={handleChange}
-                          className="absolute inset-0 opacity-0 pointer-events-none w-full h-full"
-                          style={{ colorScheme: 'light' }}
-                        />
                       </div>
+
+                      {/* Custom dropdown */}
+                      <AnimatePresence>
+                        {isEndTimeOpen && (
+                          <motion.div 
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 10 }}
+                            transition={{ duration: 0.2 }}
+                            data-lenis-prevent
+                            className="absolute left-0 right-0 top-full mt-[8px] bg-white border border-[hsla(0,0%,0%,0.1)] shadow-[0_10px_30px_rgba(0,0%,0%,0.1)] rounded-xl z-50 p-[10px] max-h-[200px] overflow-y-auto"
+                          >
+                            <div className="flex flex-col gap-[2px]">
+                              {timeSlots.map((time) => (
+                                <button
+                                  key={time}
+                                  type="button"
+                                  onClick={() => {
+                                    setForm(prev => ({ ...prev, endTime: time }))
+                                    setIsEndTimeOpen(false)
+                                  }}
+                                  className={`w-full text-left text-body-2 px-[10px] py-[8px] rounded transition-colors ${
+                                    form.endTime === time 
+                                      ? 'bg-[#E4C590] text-black font-bold' 
+                                      : 'text-smoky-black-1 hover:bg-[hsla(38,61%,73%,0.15)]'
+                                  }`}
+                                >
+                                  {time}
+                                </button>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
 
                   </div>
