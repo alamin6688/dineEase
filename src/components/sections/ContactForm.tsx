@@ -35,7 +35,7 @@ export default function ContactForm() {
     'w-full bg-transparent border-b border-[hsla(0,0%,0%,0.2)] py-[14px] text-body-2 text-smoky-black-1 placeholder:text-quick-silver focus:outline-none focus:border-gold-crayola transition-colors duration-[250ms]'
 
   return (
-    <section className="bg-white py-[70px] lg:py-[100px]">
+    <section className="bg-[#FAF9F6] pb-[70px] lg:pb-[100px] pt-0">
       <div className="max-w-[1200px] mx-auto px-[16px] lg:px-[20px]">
 
         {/* Header */}
@@ -70,7 +70,7 @@ export default function ContactForm() {
           viewport={{ once: true, margin: '-80px' }}
           variants={staggerContainer}
           onSubmit={handleSubmit}
-          className="max-w-[820px] mx-auto"
+          className="max-w-[820px] mx-auto bg-white border border-[hsla(0,0%,0%,0.06)] rounded-24 p-[24px] sm:p-[40px] md:p-[50px] shadow-[0_10px_40px_rgba(0,0%,0%,0.02)]"
         >
           {/* Row 1: First + Last name */}
           <motion.div
@@ -83,7 +83,7 @@ export default function ContactForm() {
                 name="firstName"
                 value={form.firstName}
                 onChange={handleChange}
-                placeholder="First Name"
+                placeholder="First Name*"
                 required
                 className={inputBase}
               />
@@ -94,7 +94,7 @@ export default function ContactForm() {
                 name="lastName"
                 value={form.lastName}
                 onChange={handleChange}
-                placeholder="Last Name"
+                placeholder="Last Name*"
                 required
                 className={inputBase}
               />
@@ -112,7 +112,7 @@ export default function ContactForm() {
                 name="email"
                 value={form.email}
                 onChange={handleChange}
-                placeholder="Email"
+                placeholder="Email*"
                 required
                 className={inputBase}
               />
@@ -136,7 +136,7 @@ export default function ContactForm() {
               name="message"
               value={form.message}
               onChange={handleChange}
-              placeholder="Message"
+              placeholder="Message*"
               rows={5}
               required
               className={`${inputBase} resize-none`}

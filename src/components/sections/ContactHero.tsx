@@ -1,6 +1,5 @@
 'use client'
 import React from 'react'
-import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { fadeInUp, staggerContainer } from '@/utils/animations'
 
@@ -21,21 +20,13 @@ export default function ContactHero() {
       </div>
 
       {/* Content — pt-[100px] clears the ~80px white sticky header */}
-      <div className="relative z-10 max-w-[1200px] mx-auto px-[20px] pt-[100px] pb-[80px]">
+      <div className="relative z-10 max-w-[1200px] mx-auto px-[20px] pt-[100px] pb-[80px] w-full">
         <motion.div
           initial="hidden"
           animate="visible"
           variants={staggerContainer}
-          className="max-w-[480px]"
+          className="max-w-[620px] mx-auto text-center flex flex-col items-center justify-center"
         >
-          {/* Label */}
-          <motion.div variants={fadeInUp} className="flex items-center gap-[12px] mb-[16px]">
-            <span className="block w-[30px] h-[2px] bg-gold-crayola" />
-            <span className="text-gold-crayola font-bold text-label-2 uppercase tracking-ls-2">
-              Contact
-            </span>
-          </motion.div>
-
           {/* Heading */}
           <motion.h1
             variants={fadeInUp}
@@ -47,24 +38,10 @@ export default function ContactHero() {
           {/* Description */}
           <motion.p
             variants={fadeInUp}
-            className="text-body-2 text-quick-silver leading-relaxed mb-[30px] max-w-[360px]"
+            className="text-body-2 text-quick-silver leading-relaxed mb-[30px] max-w-[500px]"
           >
             Quaerat debitis, vel, sapiente dicta sequi labore porro pariatur harum expedita.
           </motion.p>
-
-          {/* Breadcrumb */}
-          <motion.div variants={fadeInUp} className="flex items-center gap-[6px]">
-            <Link
-              href="/"
-              className="text-label-2 font-bold uppercase tracking-ls-3 text-white hover:text-gold-crayola transition-colors"
-            >
-              Home
-            </Link>
-            <span className="text-quick-silver text-label-2">›</span>
-            <span className="text-label-2 font-bold uppercase tracking-ls-3 text-gold-crayola">
-              Contact
-            </span>
-          </motion.div>
         </motion.div>
       </div>
 

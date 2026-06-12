@@ -34,7 +34,7 @@ export default function LocationPage() {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={staggerContainer}
-              className="bg-white border border-[hsla(0,0%,0%,0.06)] rounded-24 p-[32px] sm:p-[45px] shadow-[0_10px_40px_rgba(0,0%,0%,0.02)] flex flex-col justify-between h-full gap-[40px]"
+              className="bg-white border border-[hsla(0,0%,0%,0.06)] rounded-24 p-[24px] sm:p-[32px] md:p-[45px] shadow-[0_10px_40px_rgba(0,0%,0%,0.02)] flex flex-col justify-between h-full gap-[40px]"
             >
               <div>
                 <motion.h1 
@@ -104,7 +104,7 @@ export default function LocationPage() {
 
               {/* Order/Book Buttons */}
               <motion.div variants={fadeInUp} className="flex flex-col gap-[12px] mt-auto">
-                <Btn href="/#menu" variant="secondary" className="w-full h-[54px] flex items-center justify-center font-bold">
+                <Btn href="/menu" variant="secondary" className="w-full h-[54px] flex items-center justify-center font-bold">
                   Order Online
                 </Btn>
                 <Btn href="/reserve" className="w-full h-[54px] flex items-center justify-center font-bold">
@@ -159,7 +159,7 @@ export default function LocationPage() {
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
                 variants={staggerContainer}
-                className="bg-white border border-[hsla(0,0%,0%,0.06)] rounded-24 p-[32px] sm:p-[45px] shadow-[0_10px_40px_rgba(0,0%,0%,0.02)]"
+                className="bg-white border border-[hsla(0,0%,0%,0.06)] rounded-24 p-[24px] sm:p-[32px] md:p-[45px] shadow-[0_10px_40px_rgba(0,0%,0%,0.02)]"
               >
                 <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row justify-between items-start sm:items-baseline border-b border-[hsla(0,0%,0%,0.06)] pb-[16px] mb-[25px] gap-2">
                   <h2 className="font-forum text-title-1 uppercase text-smoky-black-1 tracking-ls-1 font-bold">
@@ -171,7 +171,7 @@ export default function LocationPage() {
                 </motion.div>
 
                 {/* Hours rows list */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-[50px] gap-y-[12px] text-[1.4rem] font-bold">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-[30px] lg:gap-x-[50px] gap-y-[12px] text-[1.4rem] font-bold">
                   
                   {/* Left Column (Mon-Thu) */}
                   <div className="flex flex-col gap-[12px]">
@@ -194,10 +194,13 @@ export default function LocationPage() {
                   </div>
 
                   {/* Right Column (Fri-Sun) */}
-                  <div className="flex flex-col gap-[12px] md:border-l md:border-[hsla(0,0%,0%,0.06)] md:pl-[50px]">
-                    <motion.div variants={fadeInUp} className="flex justify-between border-b border-[hsla(0,0%,0%,0.04)] pb-[8px]">
+                  <div className="flex flex-col gap-[12px] md:border-l md:border-[hsla(0,0%,0%,0.06)] md:pl-[30px] lg:pl-[50px]">
+                    <motion.div variants={fadeInUp} className="flex justify-between border-b border-[hsla(0,0%,0%,0.04)] pb-[8px] items-start">
                       <span className="text-davys-grey">FRIDAY</span>
-                      <span className="text-smoky-black-1 font-mono">12:00 - 14:00, 17:00 - 23:00</span>
+                      <div className="text-right flex flex-col items-end text-smoky-black-1 font-mono leading-tight">
+                        <span>12:00 - 14:00</span>
+                        <span>17:00 - 23:00</span>
+                      </div>
                     </motion.div>
                     <motion.div variants={fadeInUp} className="flex justify-between border-b border-[hsla(0,0%,0%,0.04)] pb-[8px]">
                       <span className="text-davys-grey">SATURDAY</span>
@@ -250,7 +253,7 @@ export default function LocationPage() {
               {/* Parking */}
               <motion.div 
                 variants={fadeInUp}
-                className="bg-white border border-[hsla(0,0%,0%,0.06)] rounded-24 p-[32px] sm:p-[40px] text-center shadow-[0_10px_40px_rgba(0,0%,0%,0.01)] hover:shadow-md transition-shadow"
+                className="bg-white border border-[hsla(0,0%,0%,0.06)] rounded-24 p-[24px] sm:p-[32px] md:p-[40px] text-center shadow-[0_10px_40px_rgba(0,0%,0%,0.01)] hover:shadow-md transition-shadow"
               >
                 <div className="w-[54px] h-[54px] border border-[hsla(0,0%,0%,0.08)] rounded-xl flex items-center justify-center mx-auto mb-[25px] font-forum text-[2.4rem] font-bold text-smoky-black-1">
                   P
@@ -266,7 +269,7 @@ export default function LocationPage() {
               {/* Accessibility */}
               <motion.div 
                 variants={fadeInUp}
-                className="bg-white border border-[hsla(0,0%,0%,0.06)] rounded-24 p-[32px] sm:p-[40px] text-center shadow-[0_10px_40px_rgba(0,0%,0%,0.01)] hover:shadow-md transition-shadow"
+                className="bg-white border border-[hsla(0,0%,0%,0.06)] rounded-24 p-[24px] sm:p-[32px] md:p-[40px] text-center shadow-[0_10px_40px_rgba(0,0%,0%,0.01)] hover:shadow-md transition-shadow"
               >
                 <div className="w-[54px] h-[54px] border border-[hsla(0,0%,0%,0.08)] rounded-xl flex items-center justify-center mx-auto mb-[25px] text-smoky-black-1">
                   <IoAccessibilityOutline size={24} />
@@ -282,7 +285,7 @@ export default function LocationPage() {
               {/* Public Transport */}
               <motion.div 
                 variants={fadeInUp}
-                className="bg-white border border-[hsla(0,0%,0%,0.06)] rounded-24 p-[32px] sm:p-[40px] text-center shadow-[0_10px_40px_rgba(0,0%,0%,0.01)] hover:shadow-md transition-shadow"
+                className="bg-white border border-[hsla(0,0%,0%,0.06)] rounded-24 p-[24px] sm:p-[32px] md:p-[40px] text-center shadow-[0_10px_40px_rgba(0,0%,0%,0.01)] hover:shadow-md transition-shadow"
               >
                 <div className="w-[54px] h-[54px] border border-[hsla(0,0%,0%,0.08)] rounded-xl flex items-center justify-center mx-auto mb-[25px] text-smoky-black-1">
                   <IoTrainOutline size={24} />
