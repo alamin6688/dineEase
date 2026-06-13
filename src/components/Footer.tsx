@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import Separator from './Separator'
 import Btn from './Btn'
 import { toast } from 'react-hot-toast'
@@ -24,39 +25,39 @@ export default function Footer() {
           {/* Left Column: Navigation Links */}
           <ul className="flex flex-col gap-[20px] text-center lg:text-left order-2 lg:order-1">
             <li>
-              <a href="/home" className="text-quick-silver hover:text-gold-crayola transition-colors uppercase font-bold tracking-ls-4 text-[1.4rem]">
+              <Link href="/" className="text-quick-silver hover:text-gold-crayola transition-colors uppercase font-bold tracking-ls-4 text-[1.4rem]">
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/menu" className="text-quick-silver hover:text-gold-crayola transition-colors uppercase font-bold tracking-ls-4 text-[1.4rem]">
+              <Link href="/menu" className="text-quick-silver hover:text-gold-crayola transition-colors uppercase font-bold tracking-ls-4 text-[1.4rem]">
                 Menus
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/events" className="text-quick-silver hover:text-gold-crayola transition-colors uppercase font-bold tracking-ls-4 text-[1.4rem]">
+              <Link href="/events" className="text-quick-silver hover:text-gold-crayola transition-colors uppercase font-bold tracking-ls-4 text-[1.4rem]">
                 Events
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/reserve" className="text-quick-silver hover:text-gold-crayola transition-colors uppercase font-bold tracking-ls-4 text-[1.4rem]">
+              <Link href="/reserve" className="text-quick-silver hover:text-gold-crayola transition-colors uppercase font-bold tracking-ls-4 text-[1.4rem]">
                 Reservation
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/about" className="text-quick-silver hover:text-gold-crayola transition-colors uppercase font-bold tracking-ls-4 text-[1.4rem]">
+              <Link href="/about" className="text-quick-silver hover:text-gold-crayola transition-colors uppercase font-bold tracking-ls-4 text-[1.4rem]">
                 About Us
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/location" className="text-quick-silver hover:text-gold-crayola transition-colors uppercase font-bold tracking-ls-4 text-[1.4rem]">
+              <Link href="/location" className="text-quick-silver hover:text-gold-crayola transition-colors uppercase font-bold tracking-ls-4 text-[1.4rem]">
                 Location
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/contact" className="text-quick-silver hover:text-gold-crayola transition-colors uppercase font-bold tracking-ls-4 text-[1.4rem]">
+              <Link href="/contact" className="text-quick-silver hover:text-gold-crayola transition-colors uppercase font-bold tracking-ls-4 text-[1.4rem]">
                 Contact
-              </a>
+              </Link>
             </li>
           </ul>
 
